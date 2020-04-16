@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">food app</string>
+    <string name="slogan">This is the best home food delivery app in India. Eat Healthy, Stay Healthy.</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_text">Sign In</string>
+    <string name="or_text">Create Account</string>
+    <string name="create_text">Create Account</string>
+    <string name="username">Username</string>
 </resources>
