@@ -118,11 +118,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-<<<<<<< Updated upstream
-        navigationView.setNavigationItemSelectedListener( this);
-=======
+
         navigationView.setNavigationItemSelectedListener(this);
->>>>>>> Stashed changes
+
         navigationView.setCheckedItem(R.id.nav_home);
 
         foodref=FirebaseDatabase.getInstance().getReference().child("food_menu");

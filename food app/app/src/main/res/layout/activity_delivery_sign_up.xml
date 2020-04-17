@@ -16,10 +16,28 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/fullName"
+            android:layout_marginTop="16dp"
+            android:hint="@string/fullName"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
             android:id="@+id/username"
             android:layout_marginTop="16dp"
             android:hint="@string/username"
             android:inputType="textPersonName"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_marginTop="16dp"
+            android:hint="@string/phoneNumber"
+            android:inputType="text|phone"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -42,6 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+
         <Button
             android:id="@+id/email_createAcc_button"
             android:textColor="@color/colorAccent"
@@ -51,6 +70,7 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>

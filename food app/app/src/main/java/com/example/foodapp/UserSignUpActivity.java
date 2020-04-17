@@ -27,7 +27,7 @@ public class UserSignUpActivity extends AppCompatActivity {
     private EditText phoneNumber;
     private EditText email_id;
     private EditText password;
-    private RadioButton customerButton, riderButton, regularButton, irregularButton;
+    private RadioButton regularButton, irregularButton;
     private Button btn_createAcc;
     private RadioGroup CustomerTypeGroup;
     private FirebaseAuth auth;
@@ -48,29 +48,27 @@ public class UserSignUpActivity extends AppCompatActivity {
         email_id=findViewById(R.id.email_id);
         password=findViewById(R.id.password);
         btn_createAcc=findViewById(R.id.email_createAcc_button);
-        customerButton = (RadioButton) findViewById(R.id.CustomerButton);
-        riderButton = (RadioButton) findViewById(R.id.RiderButton);
         regularButton = (RadioButton) findViewById(R.id.RegularButton);
         irregularButton = (RadioButton) findViewById(R.id.IrregularButton);
         CustomerTypeGroup = (RadioGroup) findViewById(R.id.CustomerTypeGroup);
 
-        customerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (customerButton.isChecked()){
-                    CustomerTypeGroup.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-
-        riderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (riderButton.isChecked()){
-                    CustomerTypeGroup.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
+//        customerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (customerButton.isChecked()){
+//                    CustomerTypeGroup.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
+//
+//        riderButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (riderButton.isChecked()){
+//                    CustomerTypeGroup.setVisibility(View.INVISIBLE);
+//                }
+//            }
+//        });
 
 
         btn_createAcc.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +76,7 @@ public class UserSignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String txt_username=username.getText().toString().trim();
                 final String txt_email=email_id.getText().toString().trim();
-                String txt_password=email_id.getText().toString().trim();
+                String txt_password=password.getText().toString().trim();
                 final String txt_fullName = fullName.getText().toString();
                 final String txt_phoneNumber = phoneNumber.getText().toString();
                 String Role = "";
@@ -124,26 +122,33 @@ public class UserSignUpActivity extends AppCompatActivity {
                 }
 
 
-                if (customerButton.isChecked() == false && riderButton.isChecked() == false) {
-                    Toast.makeText(UserSignUpActivity.this,  "Please select either Customer or Rider",Toast.LENGTH_SHORT).show();
-//                    progressDialog1.dismiss();
-                    return;
-                }
-                if (customerButton.isChecked()) {
+//                if (customerButton.isChecked() == false && riderButton.isChecked() == false) {
+//                    Toast.makeText(UserSignUpActivity.this,  "Please select either Customer or Rider",Toast.LENGTH_SHORT).show();
+////                    progressDialog1.dismiss();
+//                    return;
+//                }
+//                if (customerButton.isChecked()) {
+//
+//                    if (regularButton.isChecked() == false && irregularButton.isChecked() == false) {
+//                        Toast.makeText(UserSignUpActivity.this, "Please select either Regular or Irregular", Toast.LENGTH_SHORT).show();
+////                        progressDialog1.dismiss();
+//                        return;
+//                    }
+//                    Role = "Customer";
+//                    if (regularButton.isChecked()){
+//                        CustomerType = "Regular";
+//                    } else if (irregularButton.isChecked()){
+//                        CustomerType = "Irregular";
+//                    }
+//                } else if (riderButton.isChecked()) {
+//                    Role = "Rider";
+//                }
 
-                    if (regularButton.isChecked() == false && irregularButton.isChecked() == false) {
-                        Toast.makeText(UserSignUpActivity.this, "Please select either Regular or Irregular", Toast.LENGTH_SHORT).show();
-//                        progressDialog1.dismiss();
-                        return;
-                    }
-                    Role = "Customer";
-                    if (regularButton.isChecked()){
-                        CustomerType = "Regular";
-                    } else if (irregularButton.isChecked()){
-                        CustomerType = "Irregular";
-                    }
-                } else if (riderButton.isChecked()) {
-                    Role = "Rider";
+                Role = "Customer";
+                if (regularButton.isChecked()){
+                    CustomerType = "Regular";
+                } else if (irregularButton.isChecked()){
+                    CustomerType = "Irregular";
                 }
 
                 final String finalRole = Role;
