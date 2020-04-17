@@ -16,10 +16,28 @@
         android:layout_height="wrap_content">
 
         <EditText
+            android:id="@+id/fullName"
+            android:layout_marginTop="16dp"
+            android:hint="@string/fullName"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
             android:id="@+id/username"
             android:layout_marginTop="16dp"
             android:hint="@string/username"
             android:inputType="textPersonName"
+            android:maxLines="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_marginTop="16dp"
+            android:hint="@string/phoneNumber"
+            android:inputType="text|phone"
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -41,6 +59,70 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Are you a"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Customer"
+                android:textSize="15sp"
+                android:id="@+id/CustomerButton"
+                />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Rider"
+                android:textSize="15sp"
+                android:id="@+id/RiderButton"
+                />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/CustomerTypeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/RegularButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:text="Regular"
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/IrregularButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="26dp"
+                android:text="Irregular"
+                android:textSize="15sp" />
+
+
+
+        </RadioGroup>
 
         <Button
             android:id="@+id/email_createAcc_button"
