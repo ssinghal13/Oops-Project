@@ -43,7 +43,7 @@ import java.util.Objects;
 
 
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Button btn_logout;
     FirebaseAuth firebaseAuth;
@@ -118,7 +118,7 @@ public class Main2Activity extends AppCompatActivity {
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
+        navigationView.setNavigationItemSelectedListener( this);
         navigationView.setCheckedItem(R.id.nav_home);
 
         foodref=FirebaseDatabase.getInstance().getReference().child("food_menu");
