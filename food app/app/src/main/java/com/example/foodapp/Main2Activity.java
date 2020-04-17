@@ -88,9 +88,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 current_user = dataSnapshot.getValue(user.class);
 
-//                if(current_user.Role.equals("Rider")){
-//                    gotorider();
-//                }
+                if(current_user.Role.equals("Rider")){
+                    gotorider();
+                }
             }
 
             @Override
@@ -118,7 +118,11 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+<<<<<<< Updated upstream
         navigationView.setNavigationItemSelectedListener( this);
+=======
+        navigationView.setNavigationItemSelectedListener(this);
+>>>>>>> Stashed changes
         navigationView.setCheckedItem(R.id.nav_home);
 
         foodref=FirebaseDatabase.getInstance().getReference().child("food_menu");
@@ -132,7 +136,10 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
     }
 
-
+    private void gotorider(){
+        startActivity(new Intent(Main2Activity.this, RiderMainActivity.class));
+        finish();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -175,7 +182,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                             @Override
                             public void onClick(View v) {
                                 holder.mAddToCart.setEnabled(false);
-//                                Log.d(position);
+
+//                                Log.e(position);
                                 addToCart(getRef(position).getKey());
 
                                 //Toast.makeText(MainActivity.this,getRef(position).getKey(),Toast.LENGTH_SHORT).show();
