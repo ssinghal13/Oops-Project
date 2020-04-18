@@ -133,7 +133,7 @@ public class UserSignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String txt_email=email_id.getText().toString().trim();
-                String txt_password=email_id.getText().toString().trim();
+                String txt_password=password.getText().toString().trim();
 
                 if( TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
                     Toast.makeText(UserSignInActivity.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
