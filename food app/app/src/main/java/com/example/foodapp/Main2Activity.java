@@ -19,15 +19,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.example.foodapp.Interface.ItemClickListener;
 import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.Model.FoodItem;
 import com.example.foodapp.ViewHolder.FoodItemViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+//import com.google.android.gms.auth.api.signin.GoogleSignIn;
+//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +45,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.Objects;
 
-
-
-public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button btn_logout;
     FirebaseAuth firebaseAuth;
@@ -62,27 +65,34 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     private FloatingActionButton mCartButton;
     user current_user;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+//
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+//
+//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        firebaseAuth=FirebaseAuth.getInstance();
-
-        mAuthStateListener=new FirebaseAuth.AuthStateListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener(){
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user=firebaseAuth.getInstance().getCurrentUser();
+            public  void  onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user==null){
-                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
+                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }
         };
 
-        userref= FirebaseDatabase.getInstance().getReference("user").child(firebaseAuth.getInstance().getCurrentUser().getUid().toString());
+
+        userref = FirebaseDatabase.getInstance().getReference("user").child(firebaseAuth.getCurrentUser().getUid().toString());
         userref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -99,6 +109,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             }
         });
 
+
         toolbar = findViewById(R.id.main_toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -108,24 +119,28 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         mCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main2Activity.this, CartMainActivity.class));
+                Intent intent = new Intent(Main2Activity.this,CartMainActivity.class);
+                startActivity(intent);
             }
         });
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar, R.string.openNavDrawer,
-                R.string.closeNavDrawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.openNavDrawer,
+                R.string.closeNavDrawer
+        );
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-<<<<<<< Updated upstream
-        navigationView.setNavigationItemSelectedListener( this);
-=======
+
         navigationView.setNavigationItemSelectedListener(this);
->>>>>>> Stashed changes
+
         navigationView.setCheckedItem(R.id.nav_home);
 
-        foodref=FirebaseDatabase.getInstance().getReference().child("food_menu");
+        foodref = FirebaseDatabase.getInstance().getReference().child("food_menu");
 
         recyclerView = findViewById(R.id.main_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -136,8 +151,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
     }
 
-    private void gotorider(){
-        startActivity(new Intent(Main2Activity.this, RiderMainActivity.class));
+    private void gotorider() {
+        Intent intent = new Intent(Main2Activity.this,RiderMainActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -155,7 +171,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
-                startActivity(new Intent(Main2Activity.this, MainActivity.class));
+                startActivity(new Intent(Main2Activity.this, UserSignInActivity.class));
                 finish();
         }
 
@@ -163,12 +179,22 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         return true;
 
     }
+
+    public void onBackPressed() {
+
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(mAuthStateListener);
 
-        FirebaseRecyclerOptions<FoodItem> options = new FirebaseRecyclerOptions.Builder<FoodItem>().setQuery(foodref, FoodItem.class).build();
+        FirebaseRecyclerOptions<FoodItem> options = new FirebaseRecyclerOptions.Builder<FoodItem>().setQuery(foodref,FoodItem.class).build();
         final FirebaseRecyclerAdapter<FoodItem, FoodItemViewHolder> adapter =
                 new FirebaseRecyclerAdapter<FoodItem, FoodItemViewHolder>(options) {
 
@@ -182,10 +208,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                             @Override
                             public void onClick(View v) {
                                 holder.mAddToCart.setEnabled(false);
-
-//                                Log.e(position);
                                 addToCart(getRef(position).getKey());
-
                                 //Toast.makeText(MainActivity.this,getRef(position).getKey(),Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -204,7 +227,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         adapter.startListening();
     }
 
-
     public void addToCart(final String ref){
         DatabaseReference foodItemRef = foodref.child(ref);
         foodItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -215,8 +237,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 cartMap.put("Name",addedItem.getName().toString());
                 cartMap.put("Price",addedItem.getBase_price().toString());
                 cartMap.put("Quantity","1");
+                cartMap.put("Product_ID",ref);
 
-                cartref.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid().toString()).child("Products")
+                cartref.child(firebaseAuth.getCurrentUser().getUid().toString()).child("Products")
                         .child(ref)
                         .updateChildren(cartMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
