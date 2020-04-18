@@ -54,7 +54,7 @@ public class DeliverSignInActivity extends AppCompatActivity {
         FacebookSdk.setApplicationId(getResources().getString(R.string.app_id));
         setContentView(R.layout.activity_deliver_sign_in);
         loginButton=findViewById(R.id.fb);
-        //loginButton.setReadPermissions("email","public_profile");
+        loginButton.setReadPermissions("email","public_profile");
         mCallbackManager=CallbackManager.Factory.create();
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
