@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
     implementation 'com.firebaseui:firebase-ui-database:6.2.1'
+    implementation 'com.facebook.android:facebook-android-sdk:5.15.3'
 }
