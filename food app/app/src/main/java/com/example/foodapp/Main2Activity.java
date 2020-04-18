@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,18 +20,13 @@ import android.widget.Toast;
 
 
 import com.example.foodapp.Interface.ItemClickListener;
-import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.Model.FoodItem;
 import com.example.foodapp.ViewHolder.FoodItemViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-//import com.google.android.gms.auth.api.signin.GoogleSignIn;
-//import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-//import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -61,29 +55,21 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-//    private GoogleSignInClient mGoogleSignInClient;
     private FloatingActionButton mCartButton;
     user current_user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         firebaseAuth = FirebaseAuth.getInstance();
-//
-//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestIdToken(getString(R.string.default_web_client_id))
-//                .requestEmail()
-//                .build();
-//
-//        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        mAuthStateListener = new FirebaseAuth.AuthStateListener(){
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
-            public  void  onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user==null){
+                if (user == null) {
                     Intent intent = new Intent(Main2Activity.this, MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -91,16 +77,15 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             }
         };
 
-
         userref = FirebaseDatabase.getInstance().getReference("user").child(firebaseAuth.getCurrentUser().getUid().toString());
         userref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 current_user = dataSnapshot.getValue(user.class);
 
-                if(current_user.Role.equals("Rider")){
-                    gotorider();
-                }
+//                if (current_user.Role.equals("Rider")) {
+//                    gotorider();
+//                }
             }
 
             @Override
@@ -119,7 +104,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         mCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Main2Activity.this,CartMainActivity.class);
+                Intent intent = new Intent(Main2Activity.this, CartMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -152,7 +137,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     }
 
     private void gotorider() {
-        Intent intent = new Intent(Main2Activity.this,RiderMainActivity.class);
+        Intent intent = new Intent(Main2Activity.this, RiderMainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -160,12 +145,12 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 break;
 
             case R.id.profile_nav:
-                Intent intent = new Intent(Main2Activity.this,  ProfileActivity.class);
+                Intent intent = new Intent(Main2Activity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.log_out:
@@ -182,9 +167,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
     public void onBackPressed() {
 
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
+        } else {
             super.onBackPressed();
         }
     }
@@ -194,16 +179,17 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         super.onStart();
         firebaseAuth.addAuthStateListener(mAuthStateListener);
 
-        FirebaseRecyclerOptions<FoodItem> options = new FirebaseRecyclerOptions.Builder<FoodItem>().setQuery(foodref,FoodItem.class).build();
+        FirebaseRecyclerOptions<FoodItem> options = new FirebaseRecyclerOptions.Builder<FoodItem>().setQuery(foodref, FoodItem.class).build();
         final FirebaseRecyclerAdapter<FoodItem, FoodItemViewHolder> adapter =
                 new FirebaseRecyclerAdapter<FoodItem, FoodItemViewHolder>(options) {
 
                     private ItemClickListener listener;
+
                     @Override
                     protected void onBindViewHolder(@NonNull final FoodItemViewHolder holder, final int position, @NonNull FoodItem model) {
 
                         holder.mFoodItemName.setText(model.getName());
-                        holder.mFoodItemPrice.setText("Price: "+model.getBase_price());
+                        holder.mFoodItemPrice.setText("Price: " + model.getBase_price());
                         holder.mAddToCart.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -217,7 +203,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                     @NonNull
                     @Override
                     public FoodItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item_layout,parent,false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item_layout, parent, false);
                         FoodItemViewHolder holder = new FoodItemViewHolder(view);
                         return holder;
                     }
@@ -227,17 +213,17 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         adapter.startListening();
     }
 
-    public void addToCart(final String ref){
+    public void addToCart(final String ref) {
         DatabaseReference foodItemRef = foodref.child(ref);
         foodItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 FoodItem addedItem = dataSnapshot.getValue(FoodItem.class);
-                final HashMap<String,Object> cartMap = new HashMap<>();
-                cartMap.put("Name",addedItem.getName().toString());
-                cartMap.put("Price",addedItem.getBase_price().toString());
-                cartMap.put("Quantity","1");
-                cartMap.put("Product_ID",ref);
+                final HashMap<String, Object> cartMap = new HashMap<>();
+                cartMap.put("Name", addedItem.getName().toString());
+                cartMap.put("Price", addedItem.getBase_price().toString());
+                cartMap.put("Quantity", "1");
+                cartMap.put("Product_ID", ref);
 
                 cartref.child(firebaseAuth.getCurrentUser().getUid().toString()).child("Products")
                         .child(ref)
@@ -245,7 +231,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(Main2Activity.this,"Added to Cart",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Main2Activity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
                             }
                         });
 

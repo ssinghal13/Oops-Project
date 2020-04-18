@@ -59,6 +59,8 @@ public class CartMainActivity extends AppCompatActivity {
 
 
 
+
+
         mplaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +88,7 @@ public class CartMainActivity extends AppCompatActivity {
         });
     }
 
-    private void setUpTotals() {
+    public void setUpTotals() {
 
         mPriceTotal = findViewById(R.id.total_price_text_view);
         mCartTotal = findViewById(R.id.cart_total_textView);
