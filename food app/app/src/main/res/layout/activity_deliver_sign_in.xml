@@ -47,12 +47,21 @@
             android:textStyle="bold" />
 
         <TextView
-            android:text="Or"
+            android:text="@string/or"
             android:textStyle="bold"
             android:textSize="18sp"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp" />
+
 
         <Button
             android:id="@+id/email_createAcc_button"
