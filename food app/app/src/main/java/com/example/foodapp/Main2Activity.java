@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,15 +18,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.example.foodapp.Interface.ItemClickListener;
-import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.Model.FoodItem;
 import com.example.foodapp.ViewHolder.FoodItemViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +39,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.Objects;
 
-
-
-public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button btn_logout;
     FirebaseAuth firebaseAuth;
@@ -58,39 +55,37 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-//    private GoogleSignInClient mGoogleSignInClient;
     private FloatingActionButton mCartButton;
     user current_user;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        firebaseAuth=FirebaseAuth.getInstance();
-
-        mAuthStateListener=new FirebaseAuth.AuthStateListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user=firebaseAuth.getInstance().getCurrentUser();
-                if(user==null){
-                    startActivity(new Intent(Main2Activity.this, MainActivity.class));
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user == null) {
+                    Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }
         };
 
-        userref= FirebaseDatabase.getInstance().getReference("user").child(firebaseAuth.getInstance().getCurrentUser().getUid().toString());
+        userref = FirebaseDatabase.getInstance().getReference("user").child(firebaseAuth.getCurrentUser().getUid().toString());
         userref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 current_user = dataSnapshot.getValue(user.class);
 
-                if(current_user.Role.equals("Rider")){
-                    gotorider();
-                }
+//                if (current_user.Role.equals("Rider")) {
+//                    gotorider();
+//                }
             }
 
             @Override
@@ -98,6 +93,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
             }
         });
+
 
         toolbar = findViewById(R.id.main_toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -108,13 +104,19 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         mCartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Main2Activity.this, CartMainActivity.class));
+                Intent intent = new Intent(Main2Activity.this, CartMainActivity.class);
+                startActivity(intent);
             }
         });
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar, R.string.openNavDrawer,
-                R.string.closeNavDrawer);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.openNavDrawer,
+                R.string.closeNavDrawer
+        );
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -123,7 +125,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         navigationView.setCheckedItem(R.id.nav_home);
 
-        foodref=FirebaseDatabase.getInstance().getReference().child("food_menu");
+        foodref = FirebaseDatabase.getInstance().getReference().child("food_menu");
 
         recyclerView = findViewById(R.id.main_recyclerview);
         recyclerView.setHasFixedSize(true);
@@ -134,26 +136,27 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
     }
 
-    private void gotorider(){
-        startActivity(new Intent(Main2Activity.this, RiderMainActivity.class));
+    private void gotorider() {
+        Intent intent = new Intent(Main2Activity.this, RiderMainActivity.class);
+        startActivity(intent);
         finish();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 break;
 
             case R.id.profile_nav:
-                Intent intent = new Intent(Main2Activity.this,  ProfileActivity.class);
+                Intent intent = new Intent(Main2Activity.this, ProfileActivity.class);
                 startActivity(intent);
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
-                startActivity(new Intent(Main2Activity.this, MainActivity.class));
+                startActivity(new Intent(Main2Activity.this, UserSignInActivity.class));
                 finish();
         }
 
@@ -161,6 +164,16 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         return true;
 
     }
+
+    public void onBackPressed() {
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -171,19 +184,17 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 new FirebaseRecyclerAdapter<FoodItem, FoodItemViewHolder>(options) {
 
                     private ItemClickListener listener;
+
                     @Override
                     protected void onBindViewHolder(@NonNull final FoodItemViewHolder holder, final int position, @NonNull FoodItem model) {
 
                         holder.mFoodItemName.setText(model.getName());
-                        holder.mFoodItemPrice.setText("Price: "+model.getBase_price());
+                        holder.mFoodItemPrice.setText("Price: " + model.getBase_price());
                         holder.mAddToCart.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 holder.mAddToCart.setEnabled(false);
-
-//                                Log.e(position);
                                 addToCart(getRef(position).getKey());
-
                                 //Toast.makeText(MainActivity.this,getRef(position).getKey(),Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -192,7 +203,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                     @NonNull
                     @Override
                     public FoodItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item_layout,parent,false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.food_item_layout, parent, false);
                         FoodItemViewHolder holder = new FoodItemViewHolder(view);
                         return holder;
                     }
@@ -202,25 +213,25 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         adapter.startListening();
     }
 
-
-    public void addToCart(final String ref){
+    public void addToCart(final String ref) {
         DatabaseReference foodItemRef = foodref.child(ref);
         foodItemRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 FoodItem addedItem = dataSnapshot.getValue(FoodItem.class);
-                final HashMap<String,Object> cartMap = new HashMap<>();
-                cartMap.put("Name",addedItem.getName().toString());
-                cartMap.put("Price",addedItem.getBase_price().toString());
-                cartMap.put("Quantity","1");
+                final HashMap<String, Object> cartMap = new HashMap<>();
+                cartMap.put("Name", addedItem.getName().toString());
+                cartMap.put("Price", addedItem.getBase_price().toString());
+                cartMap.put("Quantity", "1");
+                cartMap.put("Product_ID", ref);
 
-                cartref.child(Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid().toString()).child("Products")
+                cartref.child(firebaseAuth.getCurrentUser().getUid().toString()).child("Products")
                         .child(ref)
                         .updateChildren(cartMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(Main2Activity.this,"Added to Cart",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Main2Activity.this, "Added to Cart", Toast.LENGTH_SHORT).show();
                             }
                         });
 
