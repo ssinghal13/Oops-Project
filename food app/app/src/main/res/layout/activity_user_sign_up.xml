@@ -59,37 +59,7 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Are you a"
-                android:textSize="18sp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Customer"
-                android:textSize="15sp"
-                android:id="@+id/CustomerButton"
-                />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Rider"
-                android:textSize="15sp"
-                android:id="@+id/RiderButton"
-                />
-
-        </RadioGroup>
 
         <RadioGroup
             android:id="@+id/CustomerTypeGroup"
@@ -133,6 +103,7 @@
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>
