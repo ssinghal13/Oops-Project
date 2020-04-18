@@ -19,8 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 public class UserSignInActivity extends AppCompatActivity {
 
@@ -74,7 +72,7 @@ public class UserSignInActivity extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(UserSignInActivity.this, Main2Activity.class));
-//                        finish();
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
