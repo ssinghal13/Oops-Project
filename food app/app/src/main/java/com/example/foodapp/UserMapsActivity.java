@@ -82,7 +82,7 @@ public class UserMapsActivity extends AppCompatActivity {
 
     private void getCurrentLocation() {
         shareLocation=findViewById(R.id.shareLocation);
-        //Initialize task locaion
+        //Initialize task location
         Task<Location> task = client.getLastLocation();
         packetRef = FirebaseDatabase.getInstance().getReference("Orders");
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
