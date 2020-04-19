@@ -1,16 +1,15 @@
 package com.example.foodapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.ViewHolder.CartItemsAdapter;
@@ -73,7 +72,7 @@ public class CartMainActivity extends AppCompatActivity {
                         user u = dataSnapshot.getValue(user.class);
                         intent.putExtra("PhoneNumber", u.PhoneNumber);
                         startActivity(intent);
-                        //Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
