@@ -21,6 +21,7 @@ import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,7 +51,6 @@ public class UserSignInActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     private AccessTokenTracker accessTokenTracker;
     private CallbackManager mCallbackManager;
-
     private static final String Tag="Facebook Authentication";
 
 
@@ -154,7 +154,8 @@ public class UserSignInActivity extends AppCompatActivity {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onSuccess(AuthResult authResult) {
+                    public void onSuccess(AuthResult authResult)
+                    {
                         Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(UserSignInActivity.this, Main2Activity.class));
                         finish();
@@ -166,8 +167,8 @@ public class UserSignInActivity extends AppCompatActivity {
                         Toast.makeText(UserSignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
+
     private void handleFacebookToken(AccessToken token){
         Log.d(Tag,"handleFacebookToken"+token);
         AuthCredential credential= FacebookAuthProvider.getCredential(token.getToken());

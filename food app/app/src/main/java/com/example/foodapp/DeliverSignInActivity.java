@@ -57,7 +57,7 @@ public class DeliverSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deliver_sign_in);
-        //CallbackManager mCallbackManager;
+        //  CallbackManager mCallbackManager;
         FacebookSdk.sdkInitialize(getApplicationContext());
         FacebookSdk.setApplicationId(getResources().getString(R.string.app_id));
         try {
