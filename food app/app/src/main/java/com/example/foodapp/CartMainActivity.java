@@ -72,7 +72,8 @@ public class CartMainActivity extends AppCompatActivity {
                         user u = dataSnapshot.getValue(user.class);
                         intent.putExtra("PhoneNumber", u.PhoneNumber);
                         startActivity(intent);
-                        Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(CartMainActivity.this, Otptry.class));
+                        //Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

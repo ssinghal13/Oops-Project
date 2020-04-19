@@ -13,8 +13,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".thankyou"></activity>
         <activity android:name=".Otptry" />
-        <activity android:name=".ViewHolder.Verified" />
-        <activity android:name=".ViewHolder.OtpVerification" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
