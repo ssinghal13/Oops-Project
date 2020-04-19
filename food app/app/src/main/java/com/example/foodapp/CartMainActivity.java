@@ -1,7 +1,6 @@
 package com.example.foodapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,8 +63,8 @@ public class CartMainActivity extends AppCompatActivity {
         mplaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(CartMainActivity.this,MapsActivity.class);
-                intent.putExtra("UID",firebaseAuth.getCurrentUser().getUid());
+                final Intent intent = new Intent(CartMainActivity.this, UserMapsActivity.class);
+                intent.putExtra("User_ID",firebaseAuth.getCurrentUser().getUid());
 
                 userref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -101,8 +100,9 @@ public class CartMainActivity extends AppCompatActivity {
         mCartRef.child("Products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int cartTotal = 0;
+
                 if(dataSnapshot.exists()){
+                    int cartTotal = 0;
                     for(DataSnapshot snap: dataSnapshot.getChildren()){
                         CartItem item = snap.getValue(CartItem.class);
                         cartTotal += (Integer.parseInt(item.getPrice()) * Integer.parseInt(item.getQuantity()));
@@ -139,9 +139,10 @@ public class CartMainActivity extends AppCompatActivity {
                         });
 
                     }
+                    mCartTotal.setText("CART TOTAL : "+ cartTotal);
                 }
 
-                mCartTotal.setText("CART TOTAL : "+cartTotal);
+
             }
 
             @Override
