@@ -100,8 +100,9 @@ public class CartMainActivity extends AppCompatActivity {
         mCartRef.child("Products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int cartTotal = 0;
+
                 if(dataSnapshot.exists()){
+                    int cartTotal = 0;
                     for(DataSnapshot snap: dataSnapshot.getChildren()){
                         CartItem item = snap.getValue(CartItem.class);
                         cartTotal += (Integer.parseInt(item.getPrice()) * Integer.parseInt(item.getQuantity()));
@@ -138,9 +139,10 @@ public class CartMainActivity extends AppCompatActivity {
                         });
 
                     }
+                    mCartTotal.setText("CART TOTAL : "+ cartTotal);
                 }
 
-                mCartTotal.setText("CART TOTAL : "+cartTotal);
+
             }
 
             @Override

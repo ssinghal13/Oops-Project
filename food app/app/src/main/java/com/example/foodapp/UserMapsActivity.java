@@ -43,7 +43,6 @@ public class UserMapsActivity extends AppCompatActivity {
     private String mobNumber;
     private String uid;
     private Button shareLocation;
-    private DatabaseReference Orders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +68,7 @@ public class UserMapsActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //When permission granted
             //Call method
-            addOrder(cartRef, packetRef, mobNumber, uid);
+            addOrder(cartRef, packetRef);
             getCurrentLocation();
 
         } else {
@@ -114,7 +113,7 @@ public class UserMapsActivity extends AppCompatActivity {
                                     HashMap<String,Object> loc = new HashMap<>();
                                     loc.put("Latitude",location.getLatitude());
                                     loc.put("Longitude",location.getLongitude());
-                                    loc.put("Phone Number", mobNumber);
+                                    loc.put("Phone_Number", mobNumber);
 //                                    packetRef.child(uid).child("Customer_Details").setValue(mobNumber);
                                     packetRef.child(uid).child("Customer_Details").setValue(loc);
                                     startActivity(new Intent(UserMapsActivity.this, OrderSuccessful.class));
@@ -146,21 +145,8 @@ public class UserMapsActivity extends AppCompatActivity {
 
     }
 
-    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef, final String mobNumber, String user_id) {
-//        orderRef.child(user_id).child("Customer_Details").setValue(mobNumber);
-//        orderRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                HashMap<String,Object> h = new HashMap<>();
-//                h.put("Phone_Number",mobNumber);
-//                orderRef.child(uid).child("Customer_Info").setValue(h);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
+
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
