@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".thankyou">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="111dp"
+        android:layout_height="24dp"
+        android:text="Thank You!!"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="170dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

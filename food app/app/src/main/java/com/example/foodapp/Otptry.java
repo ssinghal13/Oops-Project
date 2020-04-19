@@ -71,7 +71,7 @@ public class Otptry extends AppCompatActivity {
                 String code = phoneNoEnteredByTheUser.getText().toString();
 
                 if (code.isEmpty() || code.length() < 6) {
-                    phoneNoEnteredByTheUser.setError("Wrong OTP...");
+                    phoneNoEnteredByTheUser.setError("Incorrect Otp");
                     phoneNoEnteredByTheUser.requestFocus();
                     return;
                 }
@@ -138,7 +138,7 @@ public class Otptry extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
 
-                            Toast.makeText(Otptry.this, "Verified", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Otptry.this, "Verification Sueccesful", Toast.LENGTH_SHORT).show();
 
                             Intent intent = new Intent(getApplicationContext(), thankyou.class); //change later
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
