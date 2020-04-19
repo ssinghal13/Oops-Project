@@ -1,7 +1,6 @@
 package com.example.foodapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,8 +63,8 @@ public class CartMainActivity extends AppCompatActivity {
         mplaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(CartMainActivity.this,MapsActivity.class);
-                intent.putExtra("UID",firebaseAuth.getCurrentUser().getUid());
+                final Intent intent = new Intent(CartMainActivity.this, UserMapsActivity.class);
+                intent.putExtra("User_ID",firebaseAuth.getCurrentUser().getUid());
 
                 userref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
