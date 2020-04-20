@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.foodapp.Model.InfoItem;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -43,6 +44,7 @@ public class UserMapsActivity extends AppCompatActivity {
     private String mobNumber;
     private String uid;
     private Button shareLocation;
+    private DatabaseReference addressRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,10 @@ public class UserMapsActivity extends AppCompatActivity {
         uid = getIntent().getStringExtra("User_ID");
         mobNumber = getIntent().getStringExtra("PhoneNumber");
 
-        cartRef = FirebaseDatabase.getInstance().getReference("Cart").child(uid);
-        packetRef = FirebaseDatabase.getInstance().getReference("Orders");
+//        cartRef = FirebaseDatabase.getInstance().getReference("Cart").child(uid).child("Info");
+//        packetRef = FirebaseDatabase.getInstance().getReference("Orders");
+        cartRef = FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Info");
+        addressRef= FirebaseDatabase.getInstance().getReference("DeliveryAddress").child(uid);
         shareLocation = findViewById(R.id.shareLocation);
 
         //Assign variable
@@ -68,7 +72,21 @@ public class UserMapsActivity extends AppCompatActivity {
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             //When permission granted
             //Call method
-            addOrder(cartRef, packetRef);
+//            addOrder(cartRef, packetRef);
+            cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    InfoItem infoItem=dataSnapshot.getValue(InfoItem.class);
+                    assert infoItem != null;
+//                    loc.put("CartTotal", infoItem.getCartTotal());
+                    addressRef.child("CartTotal").setValue(infoItem.getCartTotal());
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             getCurrentLocation();
 
         } else {
@@ -110,12 +128,17 @@ public class UserMapsActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
                                     //Location added in orders
-                                    HashMap<String,Object> loc = new HashMap<>();
+                                    final HashMap<String,Object> loc = new HashMap<>();
                                     loc.put("Latitude",location.getLatitude());
                                     loc.put("Longitude",location.getLongitude());
                                     loc.put("Phone_Number", mobNumber);
 //                                    packetRef.child(uid).child("Customer_Details").setValue(mobNumber);
-                                    packetRef.child(uid).child("Customer_Details").setValue(loc);
+//                                    packetRef.child(uid).child("Customer_Details").setValue(loc);
+                                    loc.put("User_ID", uid);
+
+
+//                                    loc.put("CartTotal", cartRef.child("Info").child("CartTotal").getKey().toString());
+                                    addressRef.updateChildren(loc);
                                     startActivity(new Intent(UserMapsActivity.this, OrderSuccessful.class));
 
                                 }
@@ -145,28 +168,28 @@ public class UserMapsActivity extends AppCompatActivity {
 
     }
 
-    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
-
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-    }
+//    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
+//
+//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful())
+//                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
+//                        else
+//                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
 
 }

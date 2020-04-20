@@ -10,17 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
-import com.example.foodapp.Model.OrderItem;
+import com.example.foodapp.Model.OrderInfoItem;
 import com.example.foodapp.ViewHolder.OrderItemsAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -41,8 +37,8 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
-    private double longitude;
-    private double latitude;
+    private double longi;
+    private double lat;
     private String user_ID;
 
     public double distance;
@@ -57,12 +53,12 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
 
-        latitude=getIntent().getDoubleExtra("Latitude", 0.0);
-        longitude=getIntent().getDoubleExtra("Longitude", 0.0);
+        lat=getIntent().getDoubleExtra("Latitude", 0.0);
+        longi=getIntent().getDoubleExtra("Longitude", 0.0);
         user_ID=getIntent().getStringExtra("UID");
 
         firebaseAuth = FirebaseAuth.getInstance();
-        orderref = FirebaseDatabase.getInstance().getReference("Orders").child(firebaseAuth.getCurrentUser().getUid().toString());
+        orderref = FirebaseDatabase.getInstance().getReference("DeliveryAddress");
 
         setUpRecyclerView();
         setSupportActionBar(toolbar);
@@ -96,28 +92,51 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
 
 
-        FirebaseRecyclerOptions<OrderItem> options = new FirebaseRecyclerOptions.Builder<OrderItem>()
-                .setQuery(orderref,OrderItem.class)
+        FirebaseRecyclerOptions<OrderInfoItem> options = new FirebaseRecyclerOptions.Builder<OrderInfoItem>()
+                .setQuery(orderref,OrderInfoItem.class)
                 .build();
         adapter = new OrderItemsAdapter(options);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new OrderItemsAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(double latitude, double longitude)
+            public void onItemClick(double latitude, double longitude,  String mobNumber, String user_ID, double cartTotal)
             {
                 final int R = 6371; // Radius of the earth
 
-                double latDistance = Math.toRadians(latitude - latitude);
-                double lonDistance = Math.toRadians(longitude - longitude);
+                double latDistance = Math.toRadians(latitude - lat);
+                double lonDistance = Math.toRadians(longitude - longi);
                 double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
-                        + Math.cos(Math.toRadians(latitude)) * Math.cos(Math.toRadians(latitude))
+                        + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(latitude))
                         * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
                 double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
                 double dist = R * c;
 
                 dist = Math.pow(distance, 2);
                 distance = Math.sqrt(dist);
+
+
+
+//                Log.d("Coordinates = ",Double.toString(latitude)+","+Double.toString(longitude));
+//                Log.d("Rider = ", Double.toString(lat)+","+Double.toString(longi));
+                Log.d("Distance = ", Double.toString(distance));
+
+                Intent intent = new Intent(RiderMainActivity.this,Main3Activity.class);
+
+//                intent.putExtra("RiderLat",Double.toString(lati));
+//                intent.putExtra("RiderLong",Double.toString(pos.longitude));
+//
+//                intent.putExtra("OrderLat",Double.toString(latitude));
+//                intent.putExtra("OrderLong",Double.toString(longitude));
+//
+//                intent.putExtra("Distance",Double.toString(distance));
+//
+//                intent.putExtra("Phone_Number", phone);
+//                intent.putExtra("Customer_UID", cust_uid);
+//                intent.putExtra("Status", status);
+//                intent.putExtra("Amount",amount);
+
+                startActivity(intent);
 
             }
         });
