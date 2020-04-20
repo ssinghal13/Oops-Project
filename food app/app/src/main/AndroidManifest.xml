@@ -17,9 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        
         <activity android:name=".ViewHolder.OrderItems2Adapter" />
         <activity android:name=".Main3Activity" />
         <activity android:name=".RiderTryActivity" />
+
+<!--        <activity android:name=".PlacePicker"></activity>-->
+        <activity android:name=".smsActivity" />
+
         <activity android:name=".RiderMapsActivity" />
         <activity android:name=".OrderSuccessful" />
 

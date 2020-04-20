@@ -65,8 +65,8 @@ public class RiderMapsActivity extends AppCompatActivity {
                         public void onMapReady(GoogleMap googleMap) {
                             LatLng latLng =new LatLng(location.getLatitude(),
                                     location.getLongitude());
-                            MarkerOptions options = new MarkerOptions().position(latLng)
-                                    .title("Delivery wala Bhaiya");
+                            MarkerOptions options = new MarkerOptions();
+                            final MarkerOptions position = options.position(latLng).draggable(true).title("Rider's Location");
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,10));
                             googleMap.addMarker(options);
                             shareLocation.setOnClickListener(new View.OnClickListener() {
