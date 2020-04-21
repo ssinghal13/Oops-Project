@@ -75,6 +75,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         rider.put("Latitude",lat);
         rider.put("Longitude",longi);
         rider.put("User_ID", rider_uid);
+        rider.put("Rider_Radius", riderRadius);
         riderRef.updateChildren(rider);
 
 
