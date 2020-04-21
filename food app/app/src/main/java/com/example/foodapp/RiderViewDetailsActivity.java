@@ -10,17 +10,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.foodapp.Model.OrderInfoItem;
+import com.example.foodapp.Model.OtpItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class RiderViewDetailsActivity extends AppCompatActivity {
 
     private DatabaseReference pickRef;
     private DatabaseReference dropRef;
     private DatabaseReference userRef;
+    private DatabaseReference otpRef;
     private String uid;
 
     private TextView pickUpLocation;
@@ -40,6 +44,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
         dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
         userRef=FirebaseDatabase.getInstance().getReference().child("user").child(uid);
+        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
 
         pickUpLocation=findViewById(R.id.pickUp);
         dropLocation=findViewById(R.id.drop);
@@ -81,6 +86,21 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(RiderViewDetailsActivity.this, "Order Accepted", Toast.LENGTH_SHORT).show();
+                otpRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        OtpItem u= dataSnapshot.getValue(OtpItem.class);
+                        HashMap<String, Object> otp=new HashMap<>();
+                        otp.put("OTP", "YES");
+                        userRef.updateChildren(otp);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 

@@ -55,7 +55,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     double longitude_drop=0.0;
 
     private DatabaseReference cartRef;
-    private DatabaseReference packetRef;
+    private DatabaseReference otpRef;
     private DatabaseReference deliveryRef;
     private DatabaseReference pickRef;
     private String mobNumber;
@@ -78,15 +78,14 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         mobNumber = getIntent().getStringExtra("PhoneNumber");
         cartTotal=getIntent().getDoubleExtra("CartTotal", 0.0);
 
-//        cartRef = FirebaseDatabase.getInstance().getReference("Cart").child(uid).child("Info");
-//        packetRef = FirebaseDatabase.getInstance().getReference("Orders");
+        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
         cartRef = FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Info");
         deliveryRef= FirebaseDatabase.getInstance().getReference("DeliveryAddress").child(uid);
         pickRef=FirebaseDatabase.getInstance().getReference("PickUpAddress").child(uid);
         shareLocationUser = findViewById(R.id.shareLocationUser);
 
         cartRef = FirebaseDatabase.getInstance().getReference("Cart").child(uid);
-        packetRef = FirebaseDatabase.getInstance().getReference("Orders");
+//        packetRef = FirebaseDatabase.getInstance().getReference("Orders");
         //shareLocation = findViewById(R.id.shareLocation);
         searchView1 = findViewById(R.id.sv_location1);
         searchView2 = findViewById(R.id.sv_location2);
@@ -250,6 +249,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     Toast.makeText(UserMapsActivity.this, "Enter Drop Location", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    final HashMap<String,Object> otp = new HashMap<>();
+                    otp.put("OTP","NO");
+                    otpRef.updateChildren(otp);
+
                     final int R = 6371; // Radius of the earth
 
                     double latDistance = Math.toRadians(latitude_pickUp - latitude_drop);
@@ -284,7 +287,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     drop.put("Location", location2);
                     deliveryRef.updateChildren(drop);
 
-                    startActivity(new Intent(UserMapsActivity.this, OrderSuccessful.class));
+                    Intent intent=new Intent(UserMapsActivity.this, OrderSuccessful.class);
+                    intent.putExtra("UID",uid);
+                    startActivity(intent);
 
                 }
             }
@@ -402,29 +407,29 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 //
 //    }
 
-    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
-
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-    }
+//    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
+//
+//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful())
+//                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
+//                        else
+//                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
 
 
     @Override
