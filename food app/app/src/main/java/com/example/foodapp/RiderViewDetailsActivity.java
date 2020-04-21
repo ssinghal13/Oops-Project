@@ -92,7 +92,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
                         OtpItem u= dataSnapshot.getValue(OtpItem.class);
                         HashMap<String, Object> otp=new HashMap<>();
                         otp.put("OTP", "YES");
-                        otpRef.updateChildren(otp);
+                        otpRef.setValue(otp);
 
                     }
 
