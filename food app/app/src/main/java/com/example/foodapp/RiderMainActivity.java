@@ -65,7 +65,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         lat=getIntent().getDoubleExtra("Latitude", 0.0);
         longi=getIntent().getDoubleExtra("Longitude", 0.0);
         rider_uid=getIntent().getStringExtra("UID");
-        riderRadius=getIntent().getDoubleExtra("Rider Radius", 50.0);
+        riderRadius=getIntent().getDoubleExtra("Rider Radius", 1000000.0);
 
         firebaseAuth = FirebaseAuth.getInstance();
         orderref = FirebaseDatabase.getInstance().getReference("DeliveryAddress");
@@ -75,6 +75,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         rider.put("Latitude",lat);
         rider.put("Longitude",longi);
         rider.put("User_ID", rider_uid);
+        //rider.put("Rider Radius", riderRadius);
         riderRef.updateChildren(rider);
 
 
