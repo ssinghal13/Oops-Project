@@ -11,6 +11,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -30,11 +32,14 @@ public class RiderMapsActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
     private FirebaseAuth firebaseAuth;
     private Button shareLocation;
+    public EditText setRadius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rider_maps);
+
+
 
         shareLocation=findViewById(R.id.shareLocationRider);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -72,11 +77,24 @@ public class RiderMapsActivity extends AppCompatActivity {
                             shareLocation.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
+                                    setRadius=findViewById(R.id.setRadius);
                                     final Intent intent=new Intent(RiderMapsActivity.this, RiderMainActivity.class);
                                     intent.putExtra("UID",firebaseAuth.getCurrentUser().getUid().toString());
                                     intent.putExtra("Longitude",location.getLongitude());
                                     intent.putExtra("Latitude",location.getLatitude());
-                                    startActivity(intent);
+                                    String regexStr = "^[0-9]*$";
+
+                                    if(setRadius.getText().toString().trim().matches(regexStr))
+                                    {
+                                        intent.putExtra("Rider Radius", setRadius.getText());
+                                        startActivity(intent);
+                                    }
+                                    else{
+                                        Toast.makeText(RiderMapsActivity.this, "Enter Correct Radius", Toast.LENGTH_SHORT).show();
+                                    }
+
+
+
                                 }
                             });
                         }

@@ -70,7 +70,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        android:background="#6270BF"
+        android:background="@color/com_facebook_button_background_color"
         android:padding="10dp"
         android:text="Confirm Location"
         android:textSize="20sp"

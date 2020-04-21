@@ -21,8 +21,11 @@ import com.example.foodapp.ViewHolder.OrderItemsAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -47,7 +50,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
     private String rider_uid;
 
     public double distance;
-    public double riderRadius=50;
+    public double riderRadius;
 
 
     @Override
@@ -62,6 +65,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         lat=getIntent().getDoubleExtra("Latitude", 0.0);
         longi=getIntent().getDoubleExtra("Longitude", 0.0);
         rider_uid=getIntent().getStringExtra("UID");
+        riderRadius=getIntent().getDoubleExtra("Rider Radius", 50.0);
 
         firebaseAuth = FirebaseAuth.getInstance();
         orderref = FirebaseDatabase.getInstance().getReference("DeliveryAddress");
