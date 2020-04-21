@@ -36,7 +36,8 @@ public class OrderSuccessful extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 OtpItem otpItem= dataSnapshot.getValue(OtpItem.class);
-                if(otpItem.getOtp()=="YES"){
+                assert otpItem != null;
+                if(otpItem.getOtp().equals("YES")){
 //                    Toast.makeText(OrderSuccessful.this, "OTP Updated", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(OrderSuccessful.this, Otptry.class));
                         finish();
