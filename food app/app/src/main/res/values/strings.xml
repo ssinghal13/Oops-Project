@@ -29,4 +29,6 @@
     <string name="home_second">Home Second</string>
     <string name="or">Or</string>
     <string name="app_id">2015384365272711</string>
+    <string name="type_your_message">Type Your Message</string>
+    <string name="send_sms">send sms</string>
 </resources>

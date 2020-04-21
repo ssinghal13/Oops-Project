@@ -120,7 +120,7 @@ public class DeliverySignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(DeliverySignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(), RiderMainActivity.class));
+                                            startActivity(new Intent(getApplicationContext(), RiderMapsActivity.class));
 //                                            progressDialog1.dismiss();
                                         }
                                     });

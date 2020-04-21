@@ -154,7 +154,7 @@ public class DeliverSignInActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(DeliverSignInActivity.this, RiderMainActivity.class));
+                        startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
                         finish();
                     }
                 })
@@ -193,7 +193,7 @@ public class DeliverSignInActivity extends AppCompatActivity {
     private void UpdateUI(FirebaseUser user){
         if(user!=null){
             Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(DeliverSignInActivity.this, RiderMainActivity.class));
+            startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
             finish();
         }
     }
