@@ -7,8 +7,18 @@ public class OrderInfoItem {
         String User_ID;
         double CartTotal;
         double Distance;
+        String Location;
+
+
 
     public OrderInfoItem() {
+    }
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String location) {
+        Location = location;
     }
 
     public String getPhone_Number() {
