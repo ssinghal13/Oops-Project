@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -65,7 +66,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         lat=getIntent().getDoubleExtra("Latitude", 0.0);
         longi=getIntent().getDoubleExtra("Longitude", 0.0);
         rider_uid=getIntent().getStringExtra("UID");
-        riderRadius=getIntent().getDoubleExtra("Rider Radius", 50.0);
+        riderRadius=getIntent().getDoubleExtra("Rider Radius",50);
 
         firebaseAuth = FirebaseAuth.getInstance();
         orderref = FirebaseDatabase.getInstance().getReference("DeliveryAddress");
@@ -135,6 +136,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
                 if(distance> riderRadius){
                     Toast.makeText(RiderMainActivity.this, "Out Of Range", Toast.LENGTH_SHORT).show();
+                    Log.d("riderRadius = ", String.valueOf(riderRadius));
 //                    Toast.makeText(RiderMainActivity.this, "Go Back and Change Radius", Toast.LENGTH_SHORT).show();
                 }
                 else {
