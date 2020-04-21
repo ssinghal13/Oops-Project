@@ -251,7 +251,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                 else{
                     final HashMap<String,Object> otp = new HashMap<>();
                     otp.put("OTP","NO");
-                    otpRef.updateChildren(otp);
+                    otpRef.setValue(otp);
 
                     final int R = 6371; // Radius of the earth
 
