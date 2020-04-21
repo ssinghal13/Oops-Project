@@ -41,6 +41,7 @@ public class CartMainActivity extends AppCompatActivity {
     private DatabaseReference mCartRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    public double TotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class CartMainActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         user u = dataSnapshot.getValue(user.class);
                         intent.putExtra("PhoneNumber", u.PhoneNumber);
+                        intent.putExtra("CartTotal", TotalPrice);
                         startActivity(intent);
                         //Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
                     }
@@ -118,7 +120,7 @@ public class CartMainActivity extends AppCompatActivity {
 
                                 mDiscount.setText("Regular Customer Discount : "+discount+"%");
 
-                                double TotalPrice = finalCartTotal *(100-discount)/100;
+                                TotalPrice = finalCartTotal *(100-discount)/100;
 
                                 mPriceTotal.setText("Total Price : "+TotalPrice);
 

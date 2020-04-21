@@ -6,6 +6,7 @@ public class OrderInfoItem {
         double Latitude, Longitude;
         String User_ID;
         double CartTotal;
+        double Distance;
 
     public OrderInfoItem() {
     }
@@ -47,6 +48,14 @@ public class OrderInfoItem {
     }
 
     public void setCartTotal(double cartTotal) {
-        this.CartTotal = cartTotal;
+        CartTotal = cartTotal;
+    }
+
+    public double getDistance() {
+        return Distance;
+    }
+
+    public void setDistance(double distance) {
+        Distance = distance;
     }
 }
