@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OtptryActivity"
-    android:background="@drawable/pic1">
+    android:background="@drawable/pic1"
+    tools:ignore="ExtraText">
+    android:background="@drawable/pic1"
+    tools:context=".OtptryActivity">
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -14,8 +17,8 @@
         android:text="Verify Phone No"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="30sp"
         android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +26,7 @@
         />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/txt_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter verification code if not automatically authenticated."
@@ -44,19 +47,21 @@
         android:hint="Enter OTP"
         android:textColorHint="#FFFFFF"
         android:backgroundTint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_mobile" />
 
     <Button
         android:id="@+id/verify_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
+        android:background="@drawable/bg_round"
         android:text="VERIFY"
         android:textStyle="bold"
-        android:background="#8BC34A"
         android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
