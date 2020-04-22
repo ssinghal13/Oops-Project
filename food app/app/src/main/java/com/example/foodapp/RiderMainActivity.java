@@ -143,6 +143,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
                 else {
                     Intent intent = new Intent(RiderMainActivity.this, RiderViewDetailsActivity.class);
                     intent.putExtra("UID",user_ID);
+                    intent.putExtra("RiderUID", rider_uid);
                     startActivity(intent);
                 }
 
