@@ -42,6 +42,10 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
     String riderNumber;
     String riderName;
     String userNumber;
+    String loc_pickUp;
+    String loc_drop;
+    String userName;
+    Double deliveryAmount;
 
     private Button btn_accept;
 
@@ -70,8 +74,9 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 OrderInfoItem orderInfoItem=dataSnapshot.getValue(OrderInfoItem.class);
-                String loc_pickUp= orderInfoItem.getLocation().substring(0, 1).toUpperCase()+orderInfoItem.getLocation().substring(1);
+                loc_pickUp= orderInfoItem.getLocation().substring(0, 1).toUpperCase()+orderInfoItem.getLocation().substring(1);
                 pickUpLocation.setText("Pick Up : "+loc_pickUp);
+                deliveryAmount=orderInfoItem.getCartTotal();
                 deliveryTotal.setText(String.format("Delivery Total : %.2f INR", orderInfoItem.getCartTotal()));
                 distance.setText(String.format("Total Distance : %.2f Km",orderInfoItem.getDistance()));
             }
@@ -86,6 +91,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 user u=dataSnapshot.getValue(user.class);
+                userName=u.getFullname();
                 userNumber=u.getPhonenumber();
 
             }
@@ -95,7 +101,6 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
 
             }
         });
-//        userNumber="7056595598";
 
         userRef.child(rider_uid).addValueEventListener(new ValueEventListener() {
             @Override
@@ -115,7 +120,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 OrderInfoItem orderInfoItem=dataSnapshot.getValue(OrderInfoItem.class);
-                String loc_drop=orderInfoItem.getLocation().substring(0,1).toUpperCase()+orderInfoItem.getLocation().substring(1);;
+                loc_drop=orderInfoItem.getLocation().substring(0,1).toUpperCase()+orderInfoItem.getLocation().substring(1);;
                 dropLocation.setText("Drop : "+ loc_drop);
             }
 
@@ -135,33 +140,22 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
                 String orderID=rider_uid.substring(0,7);
                 String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s"
                         ,orderID,riderName, riderNumber);
-//                String message= "Your Order id is %s. Deliver Person Details-> Name: ";
+
 
                 SmsManager mysmsManager= SmsManager.getDefault();
                 mysmsManager.sendTextMessage(number,null,message,null,null);
 
-                startActivity(new Intent(RiderViewDetailsActivity.this, OrderDetailsActivity.class));
+                Intent intent=new Intent(RiderViewDetailsActivity.this, OrderDetailsActivity.class);
+                intent.putExtra("PickUp",loc_pickUp);
+                intent.putExtra("Drop",loc_drop);
+                intent.putExtra("Name", userName);
+                intent.putExtra("Phone",userNumber);
+                intent.putExtra("OrderID",orderID);
+                intent.putExtra("UserID", uid);
+                intent.putExtra("DeliveryAmount", deliveryAmount);
+                startActivity(intent);
                 finish();
 
-//                otpRef.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        OtpItem u= dataSnapshot.getValue(OtpItem.class);
-//                        HashMap<String, Object> otp=new HashMap<>();
-//                        otp.put("OTP", "YES");
-//                        otpRef.setValue(otp);
-//
-////                        String number="9792911817";
-////                        String message= "Your Order id is %s. Deliver Person Details-> Name: ";
-//
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
             }
         });
 
