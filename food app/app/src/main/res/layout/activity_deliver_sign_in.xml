@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/my_bg"
+    android:background="@drawable/pic1"
     android:padding="16dp"
     tools:context=".DeliverSignInActivity">
 
@@ -23,7 +23,13 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="" />
+            android:autofillHints=""
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/password"
@@ -33,16 +39,24 @@
             android:maxLines="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="" />
+            android:autofillHints=""
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/email_sign_in_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/bg_round"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif"
             android:text="@string/login_text"
-            android:textColor="@color/colorAccent"
+            android:textColor="#CABEBE"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -52,19 +66,21 @@
             android:textSize="18sp"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="#ffff"/>
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/fb"
             android:layout_width="wrap_content"
             android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:text="@string/or"
             android:textStyle="bold"
+            android:textColor="#ffff"
             android:textSize="18sp"
             android:gravity="center_horizontal"
             android:layout_width="match_parent"
@@ -76,10 +92,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
-            android:background="@android:color/transparent"
+            android:background="@drawable/bg_round"
+            android:backgroundTint="#FFFFFF"
+            android:fontFamily="sans-serif"
             android:text="@string/create_text"
-            android:textColor="@color/colorAccent"
-            android:textSize="12sp"
+            android:textColor="#CABEBE"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 

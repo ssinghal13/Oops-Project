@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/my_bg"
+    android:background="@drawable/pic1"
     android:padding="16dp"
     tools:context=".UserSignUpActivity">
 
@@ -17,12 +17,18 @@
 
         <EditText
             android:id="@+id/fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
             android:hint="@string/fullName"
             android:inputType="textPersonName"
             android:maxLines="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/username"
@@ -31,7 +37,12 @@
             android:inputType="textPersonName"
             android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/phoneNumber"
@@ -40,7 +51,12 @@
             android:inputType="text|phone"
             android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/email_id"
@@ -49,7 +65,12 @@
             android:inputType="textEmailAddress"
             android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/password"
@@ -58,7 +79,11 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" android:textColor="@color/white"
+            android:textColorHighlight="#CDC7C7"
+            android:textColorHint="#69FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
 
         <RadioGroup
@@ -67,28 +92,44 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:visibility="visible">
+            android:visibility="visible"
+            >
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Type"
-                android:textSize="18sp" />
+                android:textColor="#69FFFFFF"
+                android:textColorHighlight="#CDC7C7"
+                android:textColorHint="#69FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/RegularButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="45dp"
+                android:buttonTint="#FFFFFF"
                 android:text="Regular"
-                android:textSize="15sp" />
+                android:textColor="#69FFFFFF"
+                android:textColorHighlight="#CDC7C7"
+                android:textColorHint="#69FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/IrregularButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="26dp"
+                android:buttonTint="#FFFFFF"
                 android:text="Irregular"
-                android:textSize="15sp" />
+                android:textColor="#69FFFFFF"
+                android:textColorHighlight="#CDC7C7"
+                android:textColorHint="#69FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
 
 
@@ -96,13 +137,15 @@
 
         <Button
             android:id="@+id/email_createAcc_button"
-            android:textColor="@color/colorAccent"
-            android:text="@string/create_text"
-            android:background="@android:color/transparent"
-            android:layout_marginTop="16dp"
-            android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/bg_round"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/create_text"
+            android:textColor="#EFE3E3"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
