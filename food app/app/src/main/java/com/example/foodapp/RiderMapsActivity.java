@@ -82,11 +82,11 @@ public class RiderMapsActivity extends AppCompatActivity {
                                     intent.putExtra("UID",firebaseAuth.getCurrentUser().getUid().toString());
                                     intent.putExtra("Longitude",location.getLongitude());
                                     intent.putExtra("Latitude",location.getLatitude());
-                                    String regexStr = "^[0-9]*$";
 
-                                    if(setRadius.getText().toString().trim().matches(regexStr))
+                                    double radius = Double.parseDouble(setRadius.getText().toString());
+                                    if(radius>0.0)
                                     {
-                                        intent.putExtra("Rider Radius", setRadius.getText());
+                                        intent.putExtra("Rider Radius", radius);
                                         startActivity(intent);
                                     }
                                     else{

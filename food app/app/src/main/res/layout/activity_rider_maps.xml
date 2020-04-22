@@ -44,7 +44,7 @@
             android:backgroundTint="@color/white"
             android:ems="10"
             android:gravity="center"
-            android:inputType="textPersonName"
+            android:inputType="text|phone"
             android:text="50"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -71,7 +71,7 @@ public class CartMainActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         user u = dataSnapshot.getValue(user.class);
-                        intent.putExtra("PhoneNumber", u.PhoneNumber);
+                        intent.putExtra("PhoneNumber", u.phonenumber);
                         intent.putExtra("CartTotal", TotalPrice);
                         startActivity(intent);
                         //Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
@@ -115,7 +115,7 @@ public class CartMainActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 double discount = 0;
                                 user u = dataSnapshot.getValue(user.class);
-                                if(u.CustomerType.equals("Regular"))
+                                if(u.customertype.equals("Regular"))
                                     discount = 20;
 
                                 mDiscount.setText("Regular Customer Discount : "+discount+"%");
