@@ -22,7 +22,7 @@ public class OrderSuccessful extends AppCompatActivity {
 
     private DatabaseReference otpRef;
     private String uid;
-
+0
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
