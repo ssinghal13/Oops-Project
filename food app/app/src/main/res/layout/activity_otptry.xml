@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OtptryActivity">
+    tools:context=".OtptryActivity"
+    android:background="@drawable/pic1">
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -12,11 +13,14 @@
         android:layout_marginTop="12dp"
         android:text="Verify Phone No"
         android:textAlignment="center"
+        android:textStyle="bold"
         android:textSize="30sp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
 
     <TextView
         android:id="@+id/textView7"
@@ -24,6 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Enter verification code if not automatically authenticated."
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:hint="Enter OTP"
+        android:textColorHint="#FFFFFF"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +55,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="VERIFY"
+        android:textStyle="bold"
+        android:background="#8BC34A"
         android:textColor="#ffffff"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
