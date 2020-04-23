@@ -284,7 +284,9 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     drop.put("Location", location2);
                     deliveryRef.updateChildren(drop);
 
-                    startActivity(new Intent(UserMapsActivity.this, OtptryActivity.class));
+                    Intent intent=new Intent(UserMapsActivity.this, OtpVerifyAcitvity.class);
+                    intent.putExtra("UserID",uid);
+                    startActivity(intent);
                     finish();
 
                 }

@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.example.foodapp.user;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class RiderViewDetailsActivity extends AppCompatActivity {
 
@@ -59,7 +60,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
         dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
         userRef=FirebaseDatabase.getInstance().getReference().child("user");
-        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+
 
         pickUpLocation=findViewById(R.id.pickUp);
         dropLocation=findViewById(R.id.drop);
@@ -135,11 +136,20 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(RiderViewDetailsActivity.this, "Order Accepted", Toast.LENGTH_SHORT).show();
 
+//                int num = generator. nextInt(899999) + 100000;
+                int i = new Random().nextInt(900000) + 100000;
 
-                String number=userNumber;
-                String orderID=rider_uid.substring(0,7);
-                String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s"
-                        ,orderID,riderName, riderNumber);
+
+                otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+                HashMap<String,Object> OTP=new HashMap<>();
+                OTP.put("otp",String.valueOf(i));
+                otpRef.updateChildren(OTP);
+
+//                String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s"
+//                        ,orderID,riderName, riderNumber);
+                String number= userNumber;
+                String orderID= rider_uid.substring(0,7);
+                String message=String.format("Your OTP code is %s", String.valueOf(i));
 
 
                 SmsManager mysmsManager= SmsManager.getDefault();
