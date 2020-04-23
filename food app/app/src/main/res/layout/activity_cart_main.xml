@@ -10,8 +10,8 @@
     <View
         android:id="@+id/view"
         android:layout_width="412dp"
-        android:layout_height="93dp"
-        android:background="#3F51B5"
+        android:layout_height="60dp"
+        android:background="#8BC34A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,7 +23,7 @@
         android:layout_height="40dp"
         android:gravity="center"
         android:text="CART"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view"
@@ -37,6 +37,7 @@
         android:id="@+id/cart_recyclerView"
         android:layout_width="414dp"
         android:layout_height="557dp"
+        android:background="@drawable/pic1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"/>
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -69,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Place Order"
-            app:backgroundTint="@color/colorAccent" />
+            app:backgroundTint="#8BC34A" />
     </LinearLayout>
 
     <LinearLayout

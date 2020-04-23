@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#FFFFFF"
         android:padding="10dp">
 
         <!--        <ImageView-->
@@ -36,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ITEM NAME"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:layout_marginBottom="5dp"/>
 
@@ -50,6 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="#000000"
                     android:text="Price:xxxx" />
 
                 <TextView
@@ -57,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="#000000"
                     android:text="Total Price: xxxx"
                     android:textAlignment="center" />
             </LinearLayout>
@@ -75,14 +79,14 @@
                     android:layout_height="45dp"
                     android:text="REMOVE"
                     android:textColor="@color/white"
-                    app:backgroundTint="@color/deleteColor" />
+                    app:backgroundTint="#BF360C" />
 
                 <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
                     android:id="@+id/quantity_btns"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="105dp"
-                    app:backGroundColor="@color/colorAccent"
+                    app:backGroundColor="#8BC34A"
                     app:finalNumber="5"
                     app:initialNumber="1"
                     app:textSize="8sp" />

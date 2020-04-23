@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/pic1"
     tools:context=".OrderDetailsActivity">
 
     <LinearLayout
@@ -23,7 +24,7 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="Order Details"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -33,8 +34,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Name"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/txt_mobile"
@@ -42,8 +44,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Mob No."
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/txt_orderID"
@@ -51,8 +54,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Order ID"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/deliveryAmount"
@@ -60,8 +64,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Delivery Amount"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/cartDetails"
@@ -72,7 +77,7 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="Cart Details"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -82,8 +87,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Small Meal : 0"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/qty_medium"
@@ -91,8 +97,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Medium Meal : 0"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/qty_large"
@@ -100,8 +107,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text=" Large Meal : 0"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/txt_address"
@@ -112,7 +120,7 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="Address"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -122,8 +130,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Pick Up"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/txt_drop"
@@ -131,8 +140,9 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Drop"
-            android:textColor="@color/overlayActionBar"
-            android:textSize="18sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
