@@ -14,14 +14,15 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@drawable/pic1"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white">
+            android:background="#8BC34A">
         </androidx.appcompat.widget.Toolbar>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
