@@ -38,12 +38,12 @@ public class thankyou extends AppCompatActivity implements NavigationView.OnNavi
         navigationView = findViewById(R.id.nav_view);
 
         uid=getIntent().getStringExtra("UID");
-        pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
-        dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
-        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
-        pickRef.removeValue();
-        dropRef.removeValue();
-        cartRef.removeValue();
+//        pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
+//        dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
+//        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+//        pickRef.removeValue();
+//        dropRef.removeValue();
+//        cartRef.removeValue();
 
 
         setSupportActionBar(toolbar);

@@ -19,6 +19,8 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private TextView txt_name,txt_mob, txt_deliveryAmount, txt_small, txt_medium, txt_large, txt_pickUp,txt_drop, txt_orderID;
     private DatabaseReference cartRef;
     private DatabaseReference otpRef;
+    private DatabaseReference pickRef;
+    private DatabaseReference dropRef;
     String uid;
     Double deliveryAmount;
     String qty_small,qty_medium,qty_large;
@@ -55,9 +57,15 @@ public class OrderDetailsActivity extends AppCompatActivity {
         txt_small.setText(qty_small);
         txt_medium.setText(qty_medium);
         txt_large.setText(qty_large);
-
-        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
-        otpRef.removeValue();
+//
+//        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+//        pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
+//        dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
+//        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+//        pickRef.removeValue();
+//        dropRef.removeValue();
+//        cartRef.removeValue();
+//        otpRef.removeValue();
 
 //        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
 //
