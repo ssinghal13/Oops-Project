@@ -42,8 +42,8 @@ public class OtptryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otptry);
 
-        verify_btn = findViewById(R.id.verify_btn);
-        phoneNoEnteredByTheUser = findViewById(R.id.verification_code_entered_by_user);
+        verify_btn = findViewById(R.id.verify_btn_rider);
+        phoneNoEnteredByTheUser = findViewById(R.id.verification_code_entered_by_rider);
         progressBar = findViewById(R.id.progress_bar);
 
         progressBar.setVisibility(View.GONE);

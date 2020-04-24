@@ -158,7 +158,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
                 SmsManager mysmsManager= SmsManager.getDefault();
                 mysmsManager.sendTextMessage(number,null,message,null,null);
 
-                Intent intent=new Intent(RiderViewDetailsActivity.this, OrderDetailsActivity.class);
+                Intent intent=new Intent(RiderViewDetailsActivity.this, RiderOtpVerify.class);
                 intent.putExtra("PickUp",loc_pickUp);
                 intent.putExtra("Drop",loc_drop);
                 intent.putExtra("Name", userName);

@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OtpVerifyAcitvity"></activity>
+        <activity android:name=".RiderOtpVerify"></activity>
+        <activity android:name=".OtpVerifyAcitvity" />
         <activity android:name=".thankyou" />
         <activity android:name=".OtptryActivity" />
         <activity android:name=".OrderDetailsActivity" />

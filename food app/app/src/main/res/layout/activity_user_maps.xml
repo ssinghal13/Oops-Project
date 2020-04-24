@@ -38,7 +38,7 @@
         android:queryHint="Enter Pickup point" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewRider"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

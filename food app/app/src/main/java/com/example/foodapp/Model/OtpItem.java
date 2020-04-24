@@ -1,7 +1,7 @@
 package com.example.foodapp.Model;
 
 public class OtpItem {
-    String otp,orderid, ridername, ridernumber;
+    String otp,orderid, ridername, ridernumber, riderotp;
 
     public OtpItem() {
     }
@@ -36,5 +36,13 @@ public class OtpItem {
 
     public void setRidernumber(String ridernumber) {
         this.ridernumber = ridernumber;
+    }
+
+    public String getRiderotp() {
+        return riderotp;
+    }
+
+    public void setRiderotp(String riderotp) {
+        this.riderotp = riderotp;
     }
 }
