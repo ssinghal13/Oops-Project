@@ -286,6 +286,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 
                     Intent intent=new Intent(UserMapsActivity.this, OtpVerifyAcitvity.class);
                     intent.putExtra("UserID",uid);
+                    intent.putExtra("PhoneNumber",mobNumber);
                     startActivity(intent);
                     finish();
 
