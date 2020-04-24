@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RiderViewDetailsActivity">
+    tools:context=".RiderViewDetailsActivity"
+    android:background="@drawable/pic1">
 
     <LinearLayout
         android:layout_width="333dp"
@@ -22,7 +23,7 @@
             android:gravity="center"
             android:padding="8dp"
             android:text="Order Details"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -33,7 +34,7 @@
             android:layout_marginTop="40dp"
             android:padding="8dp"
             android:text="TextView"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -42,7 +43,7 @@
             android:layout_height="65dp"
             android:padding="8dp"
             android:text="TextView"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -51,7 +52,7 @@
             android:layout_height="47dp"
             android:padding="8dp"
             android:text="TextView"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -61,7 +62,7 @@
             android:layout_marginTop="10sp"
             android:padding="8dp"
             android:text="TextView"
-            android:textColor="@color/overlayActionBar"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <Button
@@ -70,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
 
-            android:background="@color/com_facebook_button_background_color_pressed"
+            android:background="#8BC34A"
             android:padding="8dp"
             android:text="Accept Order"
             android:textSize="24sp"

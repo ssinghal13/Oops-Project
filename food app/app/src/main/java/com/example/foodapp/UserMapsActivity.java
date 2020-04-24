@@ -1,16 +1,11 @@
 package com.example.foodapp;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,9 +13,6 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.foodapp.Model.InfoItem;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -28,7 +20,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,7 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -91,7 +81,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         searchView1 = findViewById(R.id.sv_location1);
         searchView2 = findViewById(R.id.sv_location2);
         textView1 = findViewById(R.id.textView1);
-        textView2 = findViewById(R.id.textView2);
+        textView2 = findViewById(R.id.textViewRider);
 
         //Assign variable
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -284,7 +274,10 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
                     drop.put("Location", location2);
                     deliveryRef.updateChildren(drop);
 
-                    startActivity(new Intent(UserMapsActivity.this, OtptryActivity.class));
+                    Intent intent=new Intent(UserMapsActivity.this, OtpVerifyAcitvity.class);
+                    intent.putExtra("UserID",uid);
+                    intent.putExtra("PhoneNumber",mobNumber);
+                    startActivity(intent);
                     finish();
 
                 }
@@ -403,29 +396,29 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 //
 //    }
 
-    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
-
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-    }
+//    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
+//
+//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful())
+//                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
+//                        else
+//                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
 
 
     @Override
@@ -433,4 +426,6 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         map = googleMap;
 
     }
+
+
 }
