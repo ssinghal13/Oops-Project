@@ -396,29 +396,29 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
 //
 //    }
 
-    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
-
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-
-        });
-    }
+//    private void addOrder(DatabaseReference cartRef, final DatabaseReference orderRef) {
+//
+//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                orderRef.child(uid).setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        if (task.isSuccessful())
+//                            Toast.makeText(UserMapsActivity.this, "Location Shared", Toast.LENGTH_SHORT).show();
+//                        else
+//                            Toast.makeText(UserMapsActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//
+//        });
+//    }
 
 
     @Override
@@ -426,4 +426,6 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         map = googleMap;
 
     }
+
+
 }

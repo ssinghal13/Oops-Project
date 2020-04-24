@@ -96,4 +96,7 @@ public class OtpVerifyAcitvity extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+    }
 }

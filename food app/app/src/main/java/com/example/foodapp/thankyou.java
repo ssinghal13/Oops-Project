@@ -11,4 +11,8 @@ public class thankyou extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thankyou);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }
