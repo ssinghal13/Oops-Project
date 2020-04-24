@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,21 +69,19 @@ public class thankyou extends AppCompatActivity implements NavigationView.OnNavi
 
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Intent intent=new Intent(thankyou.this, Main2Activity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
+                Toast.makeText(this, "Not Allowed, Please SignOut", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.profile_nav:
-//                Intent intent = new Intent(Main2Activity.this, ProfileActivity.class);
-//                startActivity(intent);
+                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
-                startActivity(new Intent(thankyou.this, UserSignInActivity.class));
+                Intent intent=new Intent(thankyou.this, UserSignInActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
         }
 
