@@ -28,7 +28,7 @@ public class RiderOtpVerify extends AppCompatActivity {
     ProgressBar progressBar;
     private DatabaseReference otpRef;
     String uid, userPhone;
-    String userNumber;
+//    String userNumber;
     String loc_pickUp;
     String loc_drop;
     String userName;
@@ -87,13 +87,14 @@ public class RiderOtpVerify extends AppCompatActivity {
                             intent.putExtra("PickUp",loc_pickUp);
                             intent.putExtra("Drop",loc_drop);
                             intent.putExtra("Name", userName);
-                            intent.putExtra("Phone",userNumber);
+                            intent.putExtra("Phone",userPhone);
                             intent.putExtra("OrderID",orderID);
                             intent.putExtra("UserID", uid);
                             intent.putExtra("DeliveryAmount", deliveryAmount);
                             intent.putExtra("Small",qty_small);
                             intent.putExtra("Medium",qty_medium);
                             intent.putExtra("Large",qty_large);
+//                            intent.putExtra("Phone")
                             startActivity(intent);
                             finish();
                         }
