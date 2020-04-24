@@ -138,17 +138,20 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
 
 //                int num = generator. nextInt(899999) + 100000;
                 int i = new Random().nextInt(900000) + 100000;
-
+                String orderID= rider_uid.substring(0,7);
 
                 otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
                 HashMap<String,Object> OTP=new HashMap<>();
                 OTP.put("otp",String.valueOf(i));
+                OTP.put("orderid",orderID);
+                OTP.put("ridername",riderName);
+                OTP.put("ridernumber",riderNumber);
                 otpRef.updateChildren(OTP);
 
 //                String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s"
 //                        ,orderID,riderName, riderNumber);
                 String number= userNumber;
-                String orderID= rider_uid.substring(0,7);
+
                 String message=String.format("Your OTP code is %s", String.valueOf(i));
 
 

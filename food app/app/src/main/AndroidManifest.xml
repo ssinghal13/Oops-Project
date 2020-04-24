@@ -55,7 +55,6 @@
         </activity>
         <activity android:name=".UserMapsActivity" />
         <activity android:name=".RiderMainActivity" />
-        <activity android:name=".ProfileActivity" />
         <activity android:name=".CartMainActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".DeliverySignUpActivity" />

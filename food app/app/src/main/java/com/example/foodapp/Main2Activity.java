@@ -150,8 +150,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 break;
 
             case R.id.profile_nav:
-                Intent intent = new Intent(Main2Activity.this, ProfileActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(Main2Activity.this, ProfileActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
