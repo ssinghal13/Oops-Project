@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.Model.OrderInfoItem;
 //import com.example.foodapp.Model.OtpItem;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +33,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
     private DatabaseReference dropRef;
     private DatabaseReference userRef;
     private DatabaseReference otpRef;
+    private DatabaseReference cartRef;
     private String uid;
 
     private TextView pickUpLocation;
@@ -47,6 +49,10 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
     String loc_drop;
     String userName;
     Double deliveryAmount;
+    String qty_small="Small : 0";
+    String qty_medium="Medium Meal : 0";
+    String qty_large="Large Meal : 0";
+
 
     private Button btn_accept;
 
@@ -60,6 +66,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
         dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
         userRef=FirebaseDatabase.getInstance().getReference().child("user");
+        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
 
 
         pickUpLocation=findViewById(R.id.pickUp);
@@ -131,6 +138,30 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             }
         });
 
+        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snap:dataSnapshot.getChildren()){
+                    CartItem cartItem=snap.getValue(CartItem.class);
+                    assert cartItem != null;
+                    if(cartItem.getName().equals("Small Meal")){
+                        qty_small=String.format("Small Meal : %s", cartItem.getQuantity());
+                    }
+                    if(cartItem.getName().equals("Medium Meal")){
+                        qty_medium=String.format("Medium Meal : %s", cartItem.getQuantity());
+                    }
+                    if(cartItem.getName().equals("Large Meal")){
+                        qty_large=String.format("Large Meal : %s", cartItem.getQuantity());
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
         btn_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,6 +197,9 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
                 intent.putExtra("OrderID",orderID);
                 intent.putExtra("UserID", uid);
                 intent.putExtra("DeliveryAmount", deliveryAmount);
+                intent.putExtra("Small",qty_small);
+                intent.putExtra("Medium",qty_medium);
+                intent.putExtra("Large",qty_large);
                 startActivity(intent);
                 finish();
 

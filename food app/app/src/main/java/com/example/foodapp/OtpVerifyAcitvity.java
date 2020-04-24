@@ -78,8 +78,9 @@ public class OtpVerifyAcitvity extends AppCompatActivity {
                             SmsManager mysmsManager= SmsManager.getDefault();
                             mysmsManager.sendTextMessage(number,null,message,null,null);
 
-
-                            startActivity(new Intent(OtpVerifyAcitvity.this,thankyou.class));
+                            Intent intent=new Intent(OtpVerifyAcitvity.this,thankyou.class);
+                            intent.putExtra("UID",uid);
+                            startActivity(intent);
                             finish();
                         }
                         else{

@@ -33,6 +33,7 @@ public class RiderOtpVerify extends AppCompatActivity {
     String loc_drop;
     String userName;
     Double deliveryAmount;
+    String qty_small,qty_medium,qty_large;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class RiderOtpVerify extends AppCompatActivity {
         loc_pickUp=getIntent().getStringExtra("PickUp");
         loc_drop=getIntent().getStringExtra("Drop");
         deliveryAmount=getIntent().getDoubleExtra("DeliveryAmount",0.0);
+        qty_small=getIntent().getStringExtra("Small");
+        qty_medium=getIntent().getStringExtra("Medium");
+        qty_large=getIntent().getStringExtra("Large");
 
 
         verify_btn = findViewById(R.id.verify_btn_rider);
@@ -87,6 +91,9 @@ public class RiderOtpVerify extends AppCompatActivity {
                             intent.putExtra("OrderID",orderID);
                             intent.putExtra("UserID", uid);
                             intent.putExtra("DeliveryAmount", deliveryAmount);
+                            intent.putExtra("Small",qty_small);
+                            intent.putExtra("Medium",qty_medium);
+                            intent.putExtra("Large",qty_large);
                             startActivity(intent);
                             finish();
                         }

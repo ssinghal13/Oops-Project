@@ -18,13 +18,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
 
     private TextView txt_name,txt_mob, txt_deliveryAmount, txt_small, txt_medium, txt_large, txt_pickUp,txt_drop, txt_orderID;
     private DatabaseReference cartRef;
+    private DatabaseReference otpRef;
     String uid;
     Double deliveryAmount;
+    String qty_small,qty_medium,qty_large;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
+
+        qty_small=getIntent().getStringExtra("Small");
+        qty_medium=getIntent().getStringExtra("Medium");
+        qty_large=getIntent().getStringExtra("Large");
 
 
 
@@ -45,33 +52,39 @@ public class OrderDetailsActivity extends AppCompatActivity {
         txt_orderID.setText(String.format("Order ID : %s", getIntent().getStringExtra("OrderID")));
         txt_deliveryAmount.setText(String.format("DeliveryAmount : %.2f", getIntent().getDoubleExtra("DeliveryAmount",0.0)));
         uid=getIntent().getStringExtra("UserID");
+        txt_small.setText(qty_small);
+        txt_medium.setText(qty_medium);
+        txt_large.setText(qty_large);
 
-        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
+        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+        otpRef.removeValue();
 
-        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot snap:dataSnapshot.getChildren()){
-                    CartItem cartItem=snap.getValue(CartItem.class);
-                    if(cartItem.getName().equals("Small Meal")){
-                        txt_small.setText(String.format("Small Meal : %s", cartItem.getQuantity()));
-                    }
-                    if(cartItem.getName().equals("Medium Meal")){
-                        txt_medium.setText(String.format("Medium Meal : %s", cartItem.getQuantity()));
-                    }
-                    if(cartItem.getName().equals("Large Meal")){
-                        txt_large.setText(String.format("Large Meal : %s", cartItem.getQuantity()));
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(OrderDetailsActivity.this, "Issue in Order", Toast.LENGTH_SHORT).show();
-                Toast.makeText(OrderDetailsActivity.this, "Please Contact Customer", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
+//
+//        cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot snap:dataSnapshot.getChildren()){
+//                    CartItem cartItem=snap.getValue(CartItem.class);
+//                    if(cartItem.getName().equals("Small Meal")){
+//                        txt_small.setText(String.format("Small Meal : %s", cartItem.getQuantity()));
+//                    }
+//                    if(cartItem.getName().equals("Medium Meal")){
+//                        txt_medium.setText(String.format("Medium Meal : %s", cartItem.getQuantity()));
+//                    }
+//                    if(cartItem.getName().equals("Large Meal")){
+//                        txt_large.setText(String.format("Large Meal : %s", cartItem.getQuantity()));
+//                    }
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(OrderDetailsActivity.this, "Issue in Order", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(OrderDetailsActivity.this, "Please Contact Customer", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
 
 

@@ -26,7 +26,6 @@
         <activity android:name=".RiderTryActivity" /> <!-- <activity android:name=".PlacePicker"></activity> -->
         <activity android:name=".smsActivity" />
         <activity android:name=".RiderMapsActivity" />
-        <activity android:name=".OrderSuccessful" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
