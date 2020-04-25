@@ -147,12 +147,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
                 otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
-                pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
-                dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
-//                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
-//                cartRef.removeValue();
-                pickRef.removeValue();
-                dropRef.removeValue();
+//                pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
+//                dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
+////                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+////                cartRef.removeValue();
+//                pickRef.removeValue();
+//                dropRef.removeValue();
                 otpRef.removeValue();
 //                mGoogleSignInClient.signOut();
                 Intent intent=new Intent(OrderDetailsActivity.this, MainActivity.class);
