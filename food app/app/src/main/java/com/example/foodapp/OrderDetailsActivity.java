@@ -134,6 +134,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(OrderDetailsActivity.this, RatingActivity.class);
+                intent.putExtra("userID",uid);
                 startActivity(intent);
                 finish();
             }
