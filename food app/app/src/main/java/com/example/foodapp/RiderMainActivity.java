@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+
 public class RiderMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar toolbar;
@@ -41,6 +43,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
     private RecyclerView.LayoutManager layoutManager;
 
     private DatabaseReference orderref;
+
     private DatabaseReference riderRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
@@ -51,6 +54,10 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
     public double distance;
     public double riderRadius;
+
+    private String user_id;
+
+
 
 
     @Override
@@ -80,6 +87,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
 
 //        RiderInfoItem riderInfoItem=new RiderInfoItem(lat,longi,rider_uid,riderRadius);
+
 
         setUpRecyclerView();
         setSupportActionBar(toolbar);
@@ -113,15 +121,19 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
 
 
+
         FirebaseRecyclerOptions<OrderInfoItem> options = new FirebaseRecyclerOptions.Builder<OrderInfoItem>()
                 .setQuery(orderref,OrderInfoItem.class)
+
                 .build();
         adapter = new OrderItemsAdapter(options);
         recyclerView.setAdapter(adapter);
 
         adapter.setOnItemClickListener(new OrderItemsAdapter.OnItemClickListener() {
             @Override
+
             public void onItemClick(double latitude, double longitude,  String mobNumber, String user_ID, double cartTotal, double dist)
+
             {
                 final int R = 6371; // Radius of the earth
 
@@ -131,6 +143,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
                         + Math.cos(Math.toRadians(lat)) * Math.cos(Math.toRadians(latitude))
                         * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
                 double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
 
                 distance = R*c;
 
@@ -147,6 +160,7 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
 
 
 
+
             }
         });
 
@@ -158,7 +172,9 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_home:
                 break;
             case R.id.profile_nav:
+
                 Intent intent = new Intent(RiderMainActivity.this,  ProfileRiderActivity.class);
+
                 startActivity(intent);
                 break;
             case R.id.log_out:
@@ -179,4 +195,6 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
             super.onBackPressed();
         }
     }
+
 }
+

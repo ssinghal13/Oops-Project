@@ -121,11 +121,13 @@ public class DeliverySignUpActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(DeliverySignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
 
+
                                             Intent intent=new Intent(DeliverySignUpActivity.this, RiderMapsActivity.class);
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
                                             finish();
 //                                            startActivity(new Intent(getApplicationContext(), RiderMapsActivity.class));
+
 //                                            progressDialog1.dismiss();
                                         }
                                     });
