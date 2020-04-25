@@ -33,6 +33,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -150,20 +154,66 @@ public class DeliverSignInActivity extends AppCompatActivity {
 
     public void loginUser(String email, String password){
         auth.signInWithEmailAndPassword(email, password)
-                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                .addOnCompleteListener(DeliverSignInActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
-                        finish();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(DeliverSignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+
+                            FirebaseDatabase.getInstance().getReference("user")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    String Role = dataSnapshot.child("role").getValue().toString();
+                                    if (Role.equals("Customer")){
+//                                progressDialog.dismiss();
+                                        Toast.makeText(DeliverSignInActivity.this, "Users Account, Not Allowed", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                    else if (Role.equals("Rider")) {
+//                                progressDialog.dismiss();
+//                                startActivity(new Intent(UserSignInActivity.this, RiderMainActivity.class));
+//                                finish();
+                                        Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(DeliverSignInActivity.this, RiderMapsActivity.class);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                            progressDialog.dismiss();
+                                    Toast.makeText(DeliverSignInActivity.this,  "Error fetching Details",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                        } else {
+
+//                    progressDialog.dismiss();
+                            Toast.makeText(DeliverSignInActivity.this,  "Login Failed ",Toast.LENGTH_SHORT).show();
+
+                        }
+
                     }
                 });
+//                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+//                    @Override
+//                    public void onSuccess(AuthResult authResult) {
+//                        Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//                        startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
+//                        finish();
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(DeliverSignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
     }
     private void handleFacebookToken(AccessToken token){
@@ -192,9 +242,37 @@ public class DeliverSignInActivity extends AppCompatActivity {
     }
     private void UpdateUI(FirebaseUser user){
         if(user!=null){
-            Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
-            finish();
+            FirebaseDatabase.getInstance().getReference("user")
+                    .child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String Role = dataSnapshot.child("role").getValue().toString();
+                    if (Role.equals("Customer")){
+//                                progressDialog.dismiss();
+                        Toast.makeText(DeliverSignInActivity.this, "Users Account, Not Allowed", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if (Role.equals("Rider")) {
+//                                progressDialog.dismiss();
+//                                startActivity(new Intent(UserSignInActivity.this, RiderMainActivity.class));
+//                                finish();
+                        Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(DeliverSignInActivity.this, RiderMapsActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+//            Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//            startActivity(new Intent(DeliverSignInActivity.this, RiderMapsActivity.class));
+//            finish();
         }
     }
     @Override

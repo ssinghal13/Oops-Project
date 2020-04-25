@@ -147,9 +147,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
-                Intent intent=new Intent(OrderDetailsActivity.this, UserSignInActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent=new Intent(OrderDetailsActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
         }

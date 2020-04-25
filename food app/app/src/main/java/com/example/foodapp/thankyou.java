@@ -78,9 +78,8 @@ public class thankyou extends AppCompatActivity implements NavigationView.OnNavi
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
-                Intent intent=new Intent(thankyou.this, UserSignInActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent intent=new Intent(thankyou.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
         }
