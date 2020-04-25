@@ -128,7 +128,7 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
                 Intent intent3 = new Intent(RatingActivity.this, ProfileRiderActivity.class);
                 startActivity(intent3);
                 break;
-            case R.id.log_out:  
+            case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
                 Intent intent2=new Intent(RatingActivity.this, MainActivity.class);
                 intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
