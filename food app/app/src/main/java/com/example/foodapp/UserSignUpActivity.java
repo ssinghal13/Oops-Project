@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 
 
 public class UserSignUpActivity extends AppCompatActivity {
@@ -170,6 +171,12 @@ public class UserSignUpActivity extends AppCompatActivity {
                                             finalCustomerType
 
                                     );
+                                    HashMap<String,Object> rat=new HashMap<>();
+                                    rat.put("rating", 3);
+                                    rat.put("orders",0);
+                                    FirebaseDatabase.getInstance().getReference("Rating")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(rat);
+
 
                                     FirebaseDatabase.getInstance().getReference("user")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

@@ -1,15 +1,20 @@
 package com.example.foodapp.ViewHolder;
 
+
 import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import android.widget.RelativeLayout;
+
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.foodapp.Model.OrderInfoItem;
 import com.example.foodapp.Model.RiderInfoItem;
@@ -27,10 +32,12 @@ public class OrderItemsAdapter extends FirebaseRecyclerAdapter<OrderInfoItem, Or
 
 
     public OrderItemsAdapter(@NonNull FirebaseRecyclerOptions<OrderInfoItem> options) {
+
         super(options);
     }
 
     @Override
+
     protected void onBindViewHolder(@NonNull OrderHolder holder, int position, @NonNull final OrderInfoItem model)
     {
 //        final int R = 6371; // Radius of the earth
@@ -63,19 +70,23 @@ public class OrderItemsAdapter extends FirebaseRecyclerAdapter<OrderInfoItem, Or
 //        }
 
 
+
     }
 
     @NonNull
     @Override
     public OrderHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.rider_screen,
+
                 parent, false);
         return new OrderHolder(v);
 
     }
 
     class OrderHolder extends RecyclerView.ViewHolder {
+
         TextView cartAmount;
         TextView cartTotal;
 //        TextView latitude;
@@ -94,11 +105,14 @@ public class OrderItemsAdapter extends FirebaseRecyclerAdapter<OrderInfoItem, Or
 //            longitude = itemView.findViewById(R.id.text_view_Longitude);
             viewDetails = itemView.findViewById(R.id.button_send);
 
+
         }
     }
 
     public interface OnItemClickListener{
+
         void onItemClick(double latitude, double longitude, String mobNumber, String user_ID, double cartTotal, double dist);
+
     }
     public void setOnItemClickListener(OnItemClickListener listener)
     {
