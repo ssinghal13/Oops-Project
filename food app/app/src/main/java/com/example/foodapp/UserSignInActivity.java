@@ -244,36 +244,36 @@ public class UserSignInActivity extends AppCompatActivity {
     }
     private void UpdateUI(FirebaseUser user) {
         if (user != null) {
-//            Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-//            startActivity(new Intent(UserSignInActivity.this, Main2Activity.class));
-//            finish();
-            FirebaseDatabase.getInstance().getReference("user")
-                    .child(user.getUid()).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    String Role = dataSnapshot.child("role").getValue().toString();
-                    if (Role.equals("Customer")){
-//                                progressDialog.dismiss();
-                        Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent=new Intent(UserSignInActivity.this, Main2Activity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else if (Role.equals("Rider")) {
-//                                progressDialog.dismiss();
-//                                startActivity(new Intent(UserSignInActivity.this, RiderMainActivity.class));
-//                                finish();
-                        Toast.makeText(UserSignInActivity.this, "Riders Account, Not Allowed", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(UserSignInActivity.this, Main2Activity.class));
+            finish();
+//            FirebaseDatabase.getInstance().getReference("user")
+//                    .child(user.getUid()).addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                    String Role = dataSnapshot.child("role").getValue().toString();
+//                    if (Role.equals("Customer")){
+////                                progressDialog.dismiss();
+//                        Toast.makeText(UserSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+//                        Intent intent=new Intent(UserSignInActivity.this, Main2Activity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        startActivity(intent);
+//                        finish();
+//                    }
+//                    else if (Role.equals("Rider")) {
+////                                progressDialog.dismiss();
+////                                startActivity(new Intent(UserSignInActivity.this, RiderMainActivity.class));
+////                                finish();
+//                        Toast.makeText(UserSignInActivity.this, "Riders Account, Not Allowed", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                }
+//            });
         }
     }
     @Override

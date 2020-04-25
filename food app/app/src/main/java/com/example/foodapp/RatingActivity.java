@@ -97,6 +97,10 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
 
                         }
                     });
+                    Intent intent4 =new Intent(RatingActivity.this, RiderMainActivity.class);
+                    intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent4);
+                    finish();
 
                 }
         }});
@@ -120,7 +124,9 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
                 break;
 
             case R.id.profile_nav:
-                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(RatingActivity.this, ProfileActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();

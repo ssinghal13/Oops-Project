@@ -158,8 +158,8 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_home:
                 break;
             case R.id.profile_nav:
-//                Intent intent = new Intent(RiderMainActivity.this,  ProfileActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(RiderMainActivity.this,  ProfileActivity.class);
+                startActivity(intent);
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();

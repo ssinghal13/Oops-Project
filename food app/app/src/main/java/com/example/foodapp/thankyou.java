@@ -79,11 +79,16 @@ public class thankyou extends AppCompatActivity implements NavigationView.OnNavi
                 break;
 
             case R.id.profile_nav:
-                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
+                Intent intent3 = new Intent(thankyou.this, ProfileActivity.class);
+                startActivity(intent3);
                 break;
+
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
 //                mGoogleSignInClient.signOut();
+                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+                cartRef.removeValue();
                 Intent intent=new Intent(thankyou.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
