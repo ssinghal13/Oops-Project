@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,7 +26,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ProfileRiderActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -35,8 +34,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     private EditText mUsername;
     private EditText mFullName;
     private EditText mMobileNumber;
-    private TextView userRating;
-    private TextView totalOrders;
 
     private EditText mEmail;
     private Button UpdateButton;
@@ -45,15 +42,11 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_profile_rider);
 
         toolbar = findViewById(R.id.main_toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-
-        totalOrders=findViewById(R.id.totalOrders);
-        userRating=findViewById(R.id.RatingUser);
-
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -88,20 +81,6 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                         mFullName.setText(fullname);
                         mMobileNumber.setText(phonenumber);
                         // mEmail.setText(email);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-        FirebaseDatabase.getInstance().getReference("Rating").child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        totalOrders.setText(String.format("Total Orders : %s",dataSnapshot.child("orders").getValue().toString()));
-                        userRating.setText(String.format("User Rating : %s",dataSnapshot.child("rating").getValue().toString()));
-
                     }
 
                     @Override
@@ -175,8 +154,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
                             }
                         });
-
-                Toast.makeText(ProfileActivity.this,  "Updated",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileRiderActivity.this,  "Updated",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -189,13 +167,13 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.nav_home:
-                Intent intent = new Intent(ProfileActivity.this,  Main2Activity.class);
+                Intent intent = new Intent(ProfileRiderActivity.this,  RiderMainActivity.class);
                 startActivity(intent);
                 break;
             case R.id.log_out:
                 FirebaseAuth.getInstance().signOut();
                 //mGoogleSignInClient.signOut();
-                startActivity(new Intent(ProfileActivity.this,  MainActivity.class));
+                startActivity(new Intent(ProfileRiderActivity.this,  MainActivity.class));
                 finish();
         }
 

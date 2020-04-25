@@ -125,7 +125,7 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
 
             case R.id.profile_nav:
 //                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(RatingActivity.this, ProfileActivity.class);
+                Intent intent3 = new Intent(RatingActivity.this, ProfileRiderActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.log_out:
