@@ -69,7 +69,13 @@ public class thankyou extends AppCompatActivity implements NavigationView.OnNavi
 
         switch (item.getItemId()) {
             case R.id.nav_home:
-                Toast.makeText(this, "Not Allowed, Please SignOut", Toast.LENGTH_SHORT).show();
+                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+                cartRef.removeValue();
+                Intent intent2=new Intent(thankyou.this, Main2Activity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
+                finish();
+//                Toast.makeText(this, "Not Allowed, Please SignOut", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.profile_nav:
