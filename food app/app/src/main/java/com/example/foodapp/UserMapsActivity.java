@@ -39,6 +39,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
     SearchView searchView2;
     TextView textView1;
     TextView textView2;
+    TextView txt_total;
     double latitude_pickUp=0.0;
     double latitude_drop=0.0;
     double longitude_pickUp=0.0;
@@ -82,6 +83,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         searchView2 = findViewById(R.id.sv_location2);
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textViewRider);
+
 
         //Assign variable
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
