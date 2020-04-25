@@ -27,6 +27,9 @@ public class RiderOtpVerify extends AppCompatActivity {
     EditText phoneNoEnteredByTheRider;
     ProgressBar progressBar;
     private DatabaseReference otpRef;
+    private DatabaseReference pickRef;
+    private DatabaseReference dropRef;
+
     String uid, userPhone;
 //    String userNumber;
     String loc_pickUp;
@@ -108,6 +111,14 @@ public class RiderOtpVerify extends AppCompatActivity {
 
                     }
                 });
+                otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+                pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
+                dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
+//                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+//                cartRef.removeValue();
+                pickRef.removeValue();
+                dropRef.removeValue();
+                otpRef.removeValue();   
             }
         });
     }

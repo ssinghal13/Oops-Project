@@ -83,7 +83,7 @@ public class UserMapsActivity extends FragmentActivity implements OnMapReadyCall
         searchView2 = findViewById(R.id.sv_location2);
         textView1 = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textViewRider);
-        
+
 
         //Assign variable
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager()
