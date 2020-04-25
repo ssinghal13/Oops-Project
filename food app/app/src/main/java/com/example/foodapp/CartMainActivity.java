@@ -1,7 +1,6 @@
 package com.example.foodapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +41,7 @@ public class CartMainActivity extends AppCompatActivity {
     private DatabaseReference mCartRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
+    public double TotalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +64,15 @@ public class CartMainActivity extends AppCompatActivity {
         mplaceOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(CartMainActivity.this,MapsActivity.class);
-                intent.putExtra("UID",firebaseAuth.getCurrentUser().getUid());
+                final Intent intent = new Intent(CartMainActivity.this, UserMapsActivity.class);
+                intent.putExtra("User_ID",firebaseAuth.getCurrentUser().getUid());
 
                 userref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         user u = dataSnapshot.getValue(user.class);
-                        intent.putExtra("PhoneNumber", u.PhoneNumber);
+                        intent.putExtra("PhoneNumber", u.phonenumber);
+                        intent.putExtra("CartTotal", TotalPrice);
                         startActivity(intent);
                         //Toast.makeText(CartMainActivity.this,"Phone Number : "+u.PhoneNumber,Toast.LENGTH_SHORT).show();
                     }
@@ -101,8 +102,9 @@ public class CartMainActivity extends AppCompatActivity {
         mCartRef.child("Products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int cartTotal = 0;
+
                 if(dataSnapshot.exists()){
+                    int cartTotal = 0;
                     for(DataSnapshot snap: dataSnapshot.getChildren()){
                         CartItem item = snap.getValue(CartItem.class);
                         cartTotal += (Integer.parseInt(item.getPrice()) * Integer.parseInt(item.getQuantity()));
@@ -113,12 +115,12 @@ public class CartMainActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 double discount = 0;
                                 user u = dataSnapshot.getValue(user.class);
-                                if(u.CustomerType.equals("Regular"))
+                                if(u.customertype.equals("Regular"))
                                     discount = 20;
 
                                 mDiscount.setText("Regular Customer Discount : "+discount+"%");
 
-                                double TotalPrice = finalCartTotal *(100-discount)/100;
+                                TotalPrice = finalCartTotal *(100-discount)/100;
 
                                 mPriceTotal.setText("Total Price : "+TotalPrice);
 
@@ -139,9 +141,10 @@ public class CartMainActivity extends AppCompatActivity {
                         });
 
                     }
+                    mCartTotal.setText("CART TOTAL : "+ cartTotal);
                 }
 
-                mCartTotal.setText("CART TOTAL : "+cartTotal);
+
             }
 
             @Override

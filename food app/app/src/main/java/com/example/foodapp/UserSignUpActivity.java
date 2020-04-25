@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 
 
 public class UserSignUpActivity extends AppCompatActivity {
@@ -170,6 +171,12 @@ public class UserSignUpActivity extends AppCompatActivity {
                                             finalCustomerType
 
                                     );
+                                    HashMap<String,Object> rat=new HashMap<>();
+                                    rat.put("rating", 3);
+                                    rat.put("orders",0);
+                                    FirebaseDatabase.getInstance().getReference("Rating")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(rat);
+
 
                                     FirebaseDatabase.getInstance().getReference("user")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -177,7 +184,11 @@ public class UserSignUpActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             Toast.makeText(UserSignUpActivity.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
+                                            Intent intent=new Intent(UserSignUpActivity.this, Main2Activity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            finish();
+//                                            startActivity(new Intent(getApplicationContext(), Main2Activity.class));
 //                                            progressDialog1.dismiss();
                                         }
                                     });
