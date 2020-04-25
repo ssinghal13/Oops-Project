@@ -99,8 +99,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        totalOrders.setText(String.format("Total Orders : %s",dataSnapshot.child("orders").getValue().toString()));
-                        userRating.setText(String.format("User Rating : %s",dataSnapshot.child("rating").getValue().toString()));
+                        totalOrders.setText(String.format("Total Orders : %.0f",Double.parseDouble(dataSnapshot.child("orders").getValue().toString())));
+                        userRating.setText(String.format("User Rating : %.1f",Double.parseDouble(dataSnapshot.child("rating").getValue().toString())));
 
                     }
 
