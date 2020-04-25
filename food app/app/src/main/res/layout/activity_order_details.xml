@@ -23,8 +23,8 @@
 
 
             <LinearLayout
-                android:layout_width="340dp"
-                android:layout_height="595dp"
+                android:layout_width="354dp"
+                android:layout_height="628dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -158,6 +158,12 @@
                     android:textColor="#FFFFFF"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/orderDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Order Completed" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

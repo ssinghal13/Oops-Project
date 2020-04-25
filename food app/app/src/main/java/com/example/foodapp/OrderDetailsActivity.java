@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,8 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
     String uid;
     Double deliveryAmount;
     String qty_small,qty_medium,qty_large;
+    Button orderDone;
+
 
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
@@ -52,7 +56,7 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
         navigationView = findViewById(R.id.nav_view);
 
 
-
+        orderDone=findViewById(R.id.orderDone);
         txt_name=findViewById(R.id.txt_name);
         txt_mob=findViewById(R.id.txt_mobile);
         txt_small = findViewById(R.id.qty_small);
@@ -126,7 +130,14 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
 //            }
 //        });
 
-
+        orderDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(OrderDetailsActivity.this, RatingActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 
