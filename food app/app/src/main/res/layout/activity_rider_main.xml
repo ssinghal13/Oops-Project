@@ -11,21 +11,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recycler_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:background="@drawable/pic1"/>-->
+<!--        -->
 
-            android:layout_height="match_parent" />
-
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/main_toolbar"-->
+<!--            android:minHeight="?attr/actionBarSize"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="#8BC34A">-->
+<!--        </androidx.appcompat.widget.Toolbar>-->
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
-            android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#8BC34A" />
 
-            android:background="@android:color/white">
-        </androidx.appcompat.widget.Toolbar>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:paddingTop="16dp"
+            android:scrollbars="vertical"
+            android:background="@drawable/pic1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
