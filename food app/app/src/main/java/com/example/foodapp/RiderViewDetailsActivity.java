@@ -70,6 +70,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
         userRef=FirebaseDatabase.getInstance().getReference().child("user");
         cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
+        ratRef=FirebaseDatabase.getInstance().getReference().child("Rating").child(uid);
 
 
         pickUpLocation=findViewById(R.id.pickUp);
@@ -145,7 +146,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Rating rating=dataSnapshot.getValue(Rating.class);
-                userRating.setText(String.format("Customer Rating : %.1f",rating.getRating()));
+                userRating.setText(String.format("Customer Rating : %.2f",rating.getRating()));
             }
 
             @Override

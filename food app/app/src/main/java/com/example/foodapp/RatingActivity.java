@@ -37,15 +37,20 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
 
+        toolbar = findViewById(R.id.main_toolbar);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
 
 
         txt_rating=findViewById(R.id.txt_rating);
-        newValue=Double.parseDouble(String.valueOf(txt_rating.getText()));
+
         uid=getIntent().getStringExtra("userID");
         btn_rating=findViewById(R.id.btn_rating);
 
@@ -69,6 +74,7 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
         btn_rating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                newValue=Double.parseDouble(String.valueOf(txt_rating.getText()));
                 if(newValue>5 || newValue<0){
                     Toast.makeText(RatingActivity.this, "Please Enter Valid Rating", Toast.LENGTH_SHORT).show();
                 }
