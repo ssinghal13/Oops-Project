@@ -65,10 +65,10 @@ public class RiderMainActivity extends AppCompatActivity implements NavigationVi
         lat=getIntent().getDoubleExtra("Latitude", 0.0);
         longi=getIntent().getDoubleExtra("Longitude", 0.0);
         rider_uid=getIntent().getStringExtra("UID");
-        riderRadius=getIntent().getDoubleExtra("Rider Radius", 100.0);
+        riderRadius=getIntent().getDoubleExtra("Rider Radius", 0.0);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        orderref = FirebaseDatabase.getInstance().getReference("DeliveryAddress");
+        orderref = FirebaseDatabase.getInstance().getReference("PickUpAddress");
 //        riderRef= FirebaseDatabase.getInstance().getReference("RiderAddress").child(rider_uid);
 //
 //        final HashMap<String,Object> rider = new HashMap<>();

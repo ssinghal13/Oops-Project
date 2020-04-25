@@ -23,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, UserSignInActivity.class));
-                finish();
+//                finish();
             }
         });
         btn_deliveryMan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, DeliverSignInActivity.class));
-                finish();
+//                finish();
             }
         });
     }
