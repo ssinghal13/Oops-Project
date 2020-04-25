@@ -42,6 +42,17 @@
             app:rippleColor="@color/colorAccent"
             app:tint="@android:color/white" />
 
+<!--        <TextView-->
+<!--            android:id="@+id/txt_total"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="700dp"-->
+<!--            android:text="Delivery Charges : Rs 10/km (Extra)"-->
+<!--            android:textColor="@color/white"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold" />-->
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

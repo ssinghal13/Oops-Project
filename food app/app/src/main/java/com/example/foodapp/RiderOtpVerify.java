@@ -76,8 +76,8 @@ public class RiderOtpVerify extends AppCompatActivity {
                             Toast.makeText(RiderOtpVerify.this, "View Order Details", Toast.LENGTH_SHORT).show();
 
                             String number = userPhone ;
-                            String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s"
-                        ,orderID,riderName, riderNumber);
+                            String message=String.format("Your Order id is %s. Deliver Person Details-> Name: %s, Mobile Number: %s. Delivery Amount= %s"
+                        ,orderID,riderName, riderNumber, deliveryAmount);
 
 
                             SmsManager mysmsManager= SmsManager.getDefault();
