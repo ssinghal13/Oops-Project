@@ -16,6 +16,16 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#8BC34A" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:paddingTop="16dp"
+            android:scrollbars="vertical"
+            android:background="@drawable/pic1"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,6 +37,8 @@
                 android:layout_marginTop="228dp"
                 android:gravity="center"
                 android:text="Enter Rating"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -37,12 +49,14 @@
                 android:id="@+id/txt_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="96dp"
+                android:backgroundTint="#FFFFFF"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="Out Of 5"
                 android:inputType="textPersonName"
+                android:shadowColor="#FFFFFF"
                 android:text="5"
+                android:textColor="#FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/btn_rating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

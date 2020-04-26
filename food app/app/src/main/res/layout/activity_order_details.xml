@@ -24,8 +24,8 @@
 
 
             <LinearLayout
-                android:layout_width="354dp"
-                android:layout_height="628dp"
+                android:layout_width="350dp"
+                android:layout_height="660dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -164,7 +164,8 @@
                     android:id="@+id/orderDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Order Completed" />
+                    android:text="Order Completed"
+                    android:layout_marginTop="15dp"/>
 
             </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

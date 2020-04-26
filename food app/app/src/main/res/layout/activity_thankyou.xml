@@ -16,7 +16,7 @@
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#8BC34A" />
+            android:background="#4DB6AC" />
 
         <RelativeLayout
             android:layout_marginTop="55dp"
@@ -29,14 +29,15 @@
                 android:id="@+id/imageView3"
                 android:layout_width="205dp"
                 android:layout_height="140dp"
+                android:layout_marginTop="100dp"
                 app:srcCompat="@drawable/tick"
                 android:layout_centerHorizontal="true"
                 />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="130dp"
                 android:text="THANKS FOR ORDERING"
                 android:gravity="center"
@@ -47,23 +48,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="550dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="570dp"
-                    android:background="#4DB6AC"
-                    android:text="Waiting for Rider Confirmation..."
-                    android:textColor="#000000"
-                    android:textSize="50sp"
-                    android:textStyle="italic" />
+
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="You will recieve a confirmation text soon..."
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="You will recieve your order soon..."
+                    android:textStyle="bold"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
