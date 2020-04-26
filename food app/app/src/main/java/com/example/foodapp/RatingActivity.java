@@ -97,7 +97,7 @@ public class RatingActivity extends AppCompatActivity implements NavigationView.
 
                         }
                     });
-                    Intent intent4 =new Intent(RatingActivity.this, RiderMainActivity.class);
+                    Intent intent4 =new Intent(RatingActivity.this, RiderMapsActivity.class);
                     intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent4);
                     finish();
