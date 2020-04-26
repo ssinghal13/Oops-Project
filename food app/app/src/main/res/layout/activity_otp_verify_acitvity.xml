@@ -25,7 +25,7 @@
         android:id="@+id/txt_mobile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter verification code if not automatically authenticated."
+        android:text="Waiting for Rider Confirmation...You will receive an OTP soon"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="14sp"

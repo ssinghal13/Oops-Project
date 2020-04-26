@@ -10,6 +10,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class OrderDetailsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class OrderDetailsActivity extends AppCompatActivity  {
 
     private TextView txt_name,txt_mob, txt_deliveryAmount, txt_small, txt_medium, txt_large, txt_pickUp,txt_drop, txt_orderID;
     private DatabaseReference cartRef;
@@ -32,10 +34,10 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
     String uid;
     Double deliveryAmount;
     String qty_small,qty_medium,qty_large;
+    Button orderDone;
 
-    private Toolbar toolbar;
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+
+
 
 
     @Override
@@ -47,12 +49,12 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
         qty_medium=getIntent().getStringExtra("Medium");
         qty_large=getIntent().getStringExtra("Large");
 
-        toolbar = findViewById(R.id.main_toolbar);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.nav_view);
+//        toolbar = findViewById(R.id.main_toolbar);
+//        drawerLayout = findViewById(R.id.drawer_layout);
+//        navigationView = findViewById(R.id.nav_view);
 
 
-
+        orderDone=findViewById(R.id.orderDone);
         txt_name=findViewById(R.id.txt_name);
         txt_mob=findViewById(R.id.txt_mobile);
         txt_small = findViewById(R.id.qty_small);
@@ -74,21 +76,21 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
         txt_medium.setText(qty_medium);
         txt_large.setText(qty_large);
 
-        setSupportActionBar(toolbar);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.openNavDrawer,
-                R.string.closeNavDrawer
-        );
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-        navigationView.setCheckedItem(R.id.nav_home);
+//        setSupportActionBar(toolbar);
+//        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
+//                this,
+//                drawerLayout,
+//                toolbar,
+//                R.string.openNavDrawer,
+//                R.string.closeNavDrawer
+//        );
+//
+//        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+//        actionBarDrawerToggle.syncState();
+//
+//        navigationView.setNavigationItemSelectedListener(this);
+//
+//        navigationView.setCheckedItem(R.id.nav_home);
 
 //        otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
 //        pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
@@ -126,50 +128,65 @@ public class OrderDetailsActivity extends AppCompatActivity implements Navigatio
 //            }
 //        });
 
-
-
-
-
-
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-        switch (item.getItemId()) {
-            case R.id.nav_home:
-                Toast.makeText(this, "Not Allowed, Please SignOut", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.profile_nav:
-                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.log_out:
-                FirebaseAuth.getInstance().signOut();
+        orderDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+                otpRef.removeValue();
 //                pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
 //                dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
 ////                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
 ////                cartRef.removeValue();
 //                pickRef.removeValue();
 //                dropRef.removeValue();
-                otpRef.removeValue();
-//                mGoogleSignInClient.signOut();
-                Intent intent=new Intent(OrderDetailsActivity.this, MainActivity.class);
+                Intent intent =new Intent(OrderDetailsActivity.this, RatingActivity.class);
+                intent.putExtra("userID",uid);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
-        }
+            }
+        });
 
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+
+
 
     }
 
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//        switch (item.getItemId()) {
+//            case R.id.nav_home:
+//                Toast.makeText(this, "Not Allowed, Please SignOut", Toast.LENGTH_SHORT).show();
+//                break;
+//
+//            case R.id.profile_nav:
+//                Toast.makeText(this, "Not Allowed, Please SignOut ", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.log_out:
+//                FirebaseAuth.getInstance().signOut();
+//                otpRef=FirebaseDatabase.getInstance().getReference().child("OtpStatus").child(uid);
+////                pickRef= FirebaseDatabase.getInstance().getReference().child("PickUpAddress").child(uid);
+////                dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
+//////                cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid);
+//////                cartRef.removeValue();
+////                pickRef.removeValue();
+////                dropRef.removeValue();
+//                otpRef.removeValue();
+////                mGoogleSignInClient.signOut();
+//                Intent intent=new Intent(OrderDetailsActivity.this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                finish();
+//        }
+//
+//        drawerLayout.closeDrawer(GravityCompat.START);
+//        return true;
+//
+//    }
+//
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
+
     }
 }

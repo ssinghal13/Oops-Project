@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.foodapp.Model.CartItem;
 import com.example.foodapp.Model.OrderInfoItem;
 //import com.example.foodapp.Model.OtpItem;
+import com.example.foodapp.Model.Rating;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,12 +35,14 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
     private DatabaseReference userRef;
     private DatabaseReference otpRef;
     private DatabaseReference cartRef;
+    private DatabaseReference ratRef;
     private String uid;
 
     private TextView pickUpLocation;
     private TextView dropLocation;
     private TextView deliveryTotal;
     private TextView distance;
+    private TextView userRating;
     //    private TextView pickUp_distance;
     String rider_uid;
     String riderNumber;
@@ -67,6 +70,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         dropRef=FirebaseDatabase.getInstance().getReference().child("DeliveryAddress").child(uid);
         userRef=FirebaseDatabase.getInstance().getReference().child("user");
         cartRef= FirebaseDatabase.getInstance().getReference().child("Cart").child(uid).child("Products");
+        ratRef=FirebaseDatabase.getInstance().getReference().child("Rating").child(uid);
 
 
         pickUpLocation=findViewById(R.id.pickUp);
@@ -74,6 +78,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
         deliveryTotal=findViewById(R.id.deliveryAmount);
         distance=findViewById(R.id.distance);
         btn_accept=findViewById(R.id.btn_accept);
+        userRating=findViewById(R.id.userRating);
 
         ActivityCompat.requestPermissions(RiderViewDetailsActivity.this,
                 new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_SMS}, PackageManager.PERMISSION_GRANTED);
@@ -137,6 +142,18 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
 
             }
         });
+        ratRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Rating rating=dataSnapshot.getValue(Rating.class);
+                userRating.setText(String.format("Customer Rating : %.2f",rating.getRating()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         cartRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -161,6 +178,7 @@ public class RiderViewDetailsActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
 
         btn_accept.setOnClickListener(new View.OnClickListener() {
             @Override

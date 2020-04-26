@@ -62,45 +62,45 @@ public class DeliverSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deliver_sign_in);
         //CallbackManager mCallbackManager;
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        FacebookSdk.setApplicationId(getResources().getString(R.string.app_id));
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.example.foodapp",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//        FacebookSdk.setApplicationId(getResources().getString(R.string.app_id));
+//        try {
+//            PackageInfo info = getPackageManager().getPackageInfo(
+//                    "com.example.foodapp",
+//                    PackageManager.GET_SIGNATURES);
+//            for (Signature signature : info.signatures) {
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//            }
+//        } catch (PackageManager.NameNotFoundException e) {
+//
+//        } catch (NoSuchAlgorithmException e) {
+//
+//        }
 
-        } catch (NoSuchAlgorithmException e) {
-
-        }
-
-        loginButton=findViewById(R.id.fb);
-        loginButton.setReadPermissions("email","public_profile");
-        mCallbackManager=CallbackManager.Factory.create();
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(Tag,"On Success "+ loginResult);
-                handleFacebookToken(loginResult.getAccessToken());
-
-
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(Tag,"OnCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(Tag,"OnError");
-            }
-        });
+        //loginButton=findViewById(R.id.fb);
+//        loginButton.setReadPermissions("email","public_profile");
+//        mCallbackManager=CallbackManager.Factory.create();
+//        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Log.d(Tag,"On Success "+ loginResult);
+//                handleFacebookToken(loginResult.getAccessToken());
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d(Tag,"OnCancel");
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.d(Tag,"OnError");
+//            }
+//        });
         authStateListener=new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
@@ -216,30 +216,30 @@ public class DeliverSignInActivity extends AppCompatActivity {
 //                });
 
     }
-    private void handleFacebookToken(AccessToken token){
-        Log.d(Tag,"handleFacebookToken"+token);
-        AuthCredential credential= FacebookAuthProvider.getCredential(token.getToken());
-        auth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.d(Tag,"Sign in with Cred successful");
-                    FirebaseUser user=auth.getCurrentUser();
-                    UpdateUI(user);
-                }else{
-                    Log.d(Tag,"Sign in with Cred Failed",task.getException());
-                    Toast.makeText(DeliverSignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
+//    private void handleFacebookToken(AccessToken token){
+//        Log.d(Tag,"handleFacebookToken"+token);
+//        AuthCredential credential= FacebookAuthProvider.getCredential(token.getToken());
+//        auth.signInWithCredential(credential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//                if(task.isSuccessful()){
+//                    Log.d(Tag,"Sign in with Cred successful");
+//                    FirebaseUser user=auth.getCurrentUser();
+//                    UpdateUI(user);
+//                }else{
+//                    Log.d(Tag,"Sign in with Cred Failed",task.getException());
+//                    Toast.makeText(DeliverSignInActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+//    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mCallbackManager.onActivityResult(requestCode , resultCode , data);
-        super.onActivityResult(requestCode , resultCode , data);
-
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        mCallbackManager.onActivityResult(requestCode , resultCode , data);
+//        super.onActivityResult(requestCode , resultCode , data);
+//
+//    }
     private void UpdateUI(FirebaseUser user){
         if(user!=null){
             FirebaseDatabase.getInstance().getReference("user")
@@ -257,6 +257,7 @@ public class DeliverSignInActivity extends AppCompatActivity {
 //                                startActivity(new Intent(UserSignInActivity.this, RiderMainActivity.class));
 //                                finish();
                         Toast.makeText(DeliverSignInActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
                         Intent intent=new Intent(DeliverSignInActivity.this, RiderMapsActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
