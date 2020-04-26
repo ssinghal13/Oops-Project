@@ -42,7 +42,7 @@
                 android:id="@+id/mFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="Full Name"
                 android:inputType="textPersonName"
@@ -58,7 +58,7 @@
                 android:id="@+id/mUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="textPersonName"
@@ -75,7 +75,7 @@
                 android:id="@+id/mMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 android:ems="10"
                 android:hint="Mobile Number"
                 android:inputType="number"
@@ -91,10 +91,10 @@
                 android:id="@+id/UpdateButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="100dp"
                 android:background="@drawable/bg_round"
                 android:text="UPDATE"
-                android:layout_marginBottom="10dp"
                 android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
@@ -104,23 +104,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/bg_round"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#F3EAEA"
                 android:text="User Rating"
-                android:layout_marginBottom="10dp"
                 android:textColor="@color/white"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/totalOrders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/bg_round"
+                android:backgroundTint="#A8FFFFFF"
                 android:text="Total Orders"
                 android:textColor="@color/white"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
